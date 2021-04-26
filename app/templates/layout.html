@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+    <title>CITS3403 Project</title>
+</head>
+<body>
+  <header>
+    <nav>
+      {% if current_user.is_authenticated %}
+      <a href="{{url_for('logout')}}">Logout</a>
+      {% else %}
+      <a href="{{url_for('login')}}">Login</a>
+      <a href="{{url_for('register')}}">Register</a>
+      {% endif %}
+    </nav>
+  </header>
+    <main>
+      <div>
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+</body>
+</html>
