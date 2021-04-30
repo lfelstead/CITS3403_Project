@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 
@@ -28,3 +28,12 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
+
+ 
+class QuizForm(FlaskForm):
+    answer = IntegerField('answer', validators=[DataRequired()])
+
+    submit = SubmitField('Check')
+    def validate_answer(self, answer):
+        if answer.data != 10:
+            raise ValidationError('incorrect answer: {0} when should be 10'.format(answer.data))
