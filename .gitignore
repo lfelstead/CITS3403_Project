@@ -1,7 +1,9 @@
-# Virtual environment directories
+# Virtual environment
 env/
 venv/
 tmp-env/
+.env
+.venv
 
 app/__pycache__
 .vscode
