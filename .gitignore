@@ -2,6 +2,7 @@
 env/
 venv/
 tmp-env/
+.venv/
 
 app/__pycache__
 .vscode
