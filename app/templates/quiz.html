@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Quiz</h1>
+    <div class = "content-section">
+        <form method = "POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class = "form-group">
+                <b> enter 10 in the box</b>
+                <div class = "form-group">
+                    {% if form.answer.errors %}
+                        {{ form.answer(class="form-control form-control-lg is-invalid") }}
+                        <div class = "invalid-feedback">
+                            {% for error in form.answer.errors %}
+                                <span>{{ error }}</span>
+                            {%endfor%}
+                        </div>
+                    {% else %}
+                        {{ form.answer(class="form-control form-control-lg") }}
+                    {%endif%}
+                </div>
+            </fieldset>
+            <div class = "form-group">
+                {{ form.submit(class = "btn btn-outline-info")}}
+            </div>
+        </form>
+    </div>
+{% endblock %}
