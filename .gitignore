@@ -7,6 +7,3 @@ tmp-env/
 
 app/__pycache__
 .vscode
-
-# Locally stored database
-.db
