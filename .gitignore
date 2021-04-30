@@ -1,0 +1,6 @@
+# Virtual environment directories
+env/
+venv/
+tmp-env/
+
+.vscode
