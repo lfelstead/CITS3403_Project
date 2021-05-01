@@ -1,4 +1,4 @@
-# Virtual environment directories
+# Virtual environment
 env/
 venv/
 tmp-env/
