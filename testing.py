@@ -1,6 +1,7 @@
 # 
 # I NEED TO REFERENCE THIS PROPERLY!!!!!!! 
 # 
+#To start launch from command line.
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest, os, time
@@ -19,6 +20,8 @@ class Tester(unittest.TestCase):
     driver = None
 
     def setUp(self):    
+        #Creates the testing envrionment by clearing and filling the database
+        #and launching a chrome session to test in.
         chrome_driver_path = "chromedriver.exe"
 
         # create a new Chrome session
@@ -44,6 +47,7 @@ class Tester(unittest.TestCase):
 
 
     def tearDown(self):
+        #Removes all modifications done during testing, and shuts the testing environment
         if self.driver:
             self.driver.close()
             #Add tables as needed
@@ -53,13 +57,20 @@ class Tester(unittest.TestCase):
             db.session.remove()
 
     def test_sanity(self):
+        #Remove this test
         self.assertEqual(1, 1)
 
     def test_user_exists(self):
+        #A simple test to determine database is functional, and can be accessesed
         u1 = User.query.get(1)
         self.assertEqual(u1.username, "real_person")
 
     def test_new_user(self):
+        #Tests the process of creating a new user, then signing in. 
+
+        #TODO Test signin
+        #TODO test if password is hashed
+        #TODO Make test functional
         self.driver.get("http://127.0.0.1:5000/register")
         self.driver.implicitly_wait(5)
         self.driver.find_element_by_id("username").send_keys("Gary")
@@ -76,6 +87,10 @@ class Tester(unittest.TestCase):
         time.sleep(1)
         self.driver.implicitly_wait(20)
         self.assertEqual(1, 1)
+
+    #Add more tests here
+
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
