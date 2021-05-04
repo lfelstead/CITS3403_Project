@@ -12,6 +12,7 @@
 </head>
 <body>
   <header class="login">
+    <a href="{{url_for('home')}}">Home</a>
     {% if current_user.is_authenticated %}
     <a href="{{url_for('logout')}}">Logout</a>
     {% else %}
