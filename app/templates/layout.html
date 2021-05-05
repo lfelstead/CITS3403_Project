@@ -11,18 +11,47 @@
     <title>CITS3403 Project</title>
 </head>
 <body>
-  <header class="login">
-    {% if current_user.is_authenticated %}
-    <a href="{{url_for('logout')}}">Logout</a>
-    {% else %}
-    <a href="{{url_for('login')}}">Login</a>
-    <a href="{{url_for('register')}}">Register</a>
-    {% endif %}
-  </header>
+  <div id="body-wrapper">
+    <header>
+      <ul> 
+        <a class="header-item" href="{{url_for('home')}}">
+          <li><img src="{{url_for('static', filename='favicon.ico')}}" alt=""> &nbsp; Home</li>
+        </a>
+        <a class="header-item" href="">
+          <li>TOPIC</li>
+        </a>
+        <a class="header-item" href="">
+            <li>TOPIC</li>
+        </a>
+        <a class="header-item" href="">
+          <li>TOPIC</li>
+        </a>
+        <a class="header-item" href="">
+          <li>TOPIC</li>
+        </a>
+        <a class ="header-item" href="{{url_for('quiz')}}">
+          <li>Quiz</li>
+        </a>
+        {% if current_user.is_authenticated %}
+        <a href="{{url_for('logout')}}">
+          <li id="login">Logout</li>
+        </a>
+        {% else %}
+        <li id="login"> 
+          <span>
+            <a href="{{url_for('login')}}">Login</a>
+            <br>
+            <a href="{{url_for('register')}}">Register</a> 
+          </span>
+        </li>
+        {% endif %}
+      </ul>
+    </header>
     <main>
       <div>
         {% block content %}{% endblock %}
       </div>
     </main>
+  </div>
 </body>
 </html>
