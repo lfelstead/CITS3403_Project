@@ -13,40 +13,40 @@
     <title>CITS3403 Project</title>
 </head>
 <body>
+  <header id="main-header">
+    <ul> 
+      <a class="header-item active" href="{{url_for('home')}}">
+        <li><img src="{{url_for('static', filename='favicon.ico')}}" alt=""> &nbsp; Home</li>
+      </a>
+      <a class="header-item" href="">
+        <li>TOPIC</li>
+      </a>
+      <a class="header-item" href="">
+          <li>TOPIC</li>
+      </a>
+      <a class="header-item" href="">
+        <li>TOPIC</li>
+      </a>
+      <a class="header-item" href="">
+        <li>TOPIC</li>
+      </a>
+      <a class ="header-item" href="{{url_for('quiz')}}">
+        <li>Quiz</li>
+      </a>
+      {% if current_user.is_authenticated %}
+      <li id="login"><a href="{{url_for('logout')}}">Logout</a></li>
+      {% else %}
+      <li id="login"> 
+        <span>
+          <a href="{{url_for('login')}}">Login</a>
+          <br>
+          <a href="{{url_for('register')}}">Register</a> 
+        </span>
+      </li>
+      {% endif %}
+    </ul>
+  </header>
   <div id="body-wrapper">
-    <header id="main-header">
-      <ul> 
-        <a class="header-item active" href="{{url_for('home')}}">
-          <li><img src="{{url_for('static', filename='favicon.ico')}}" alt=""> &nbsp; Home</li>
-        </a>
-        <a class="header-item" href="">
-          <li>TOPIC</li>
-        </a>
-        <a class="header-item" href="">
-            <li>TOPIC</li>
-        </a>
-        <a class="header-item" href="">
-          <li>TOPIC</li>
-        </a>
-        <a class="header-item" href="">
-          <li>TOPIC</li>
-        </a>
-        <a class ="header-item" href="{{url_for('quiz')}}">
-          <li>Quiz</li>
-        </a>
-        {% if current_user.is_authenticated %}
-        <li id="login"><a href="{{url_for('logout')}}">Logout</a></li>
-        {% else %}
-        <li id="login"> 
-          <span>
-            <a href="{{url_for('login')}}">Login</a>
-            <br>
-            <a href="{{url_for('register')}}">Register</a> 
-          </span>
-        </li>
-        {% endif %}
-      </ul>
-    </header>
     <main id="content">
       {% block content %}{% endblock %}
     </main>

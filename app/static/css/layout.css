@@ -5,29 +5,10 @@ body {
   color: black;
 }
 
-/* Set up grid layer for general layout */
-/* Body container */
-#body-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 10px;
-  grid-template-areas: 
-    "header  header"
-    "body    sidebar";
-}
-
-/* Header for navigation */
 #main-header {
-  grid-area: header;
-}
-
-/* Main content */
-#content {
-  grid-area: body;
-}
-
-/* Side bar */
-#progress {
-  grid-area: sidebar;
+  position: sticky;
+  top: 0;
+  width: 100%;
 }
 
 /* Set up grid layer for header for links */
@@ -82,6 +63,25 @@ body {
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
+}
+
+/* Set up grid layer for general layout */
+/* Body container */
+#body-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 10px;
+  grid-template-areas: 
+    "body    sidebar";
+}
+  
+/* Main content */
+#content {
+  grid-area: body;
+}
+  
+/* Side bar */
+#progress {
+  grid-area: sidebar;
 }
 
 /* Background color and overflow protection*/
