@@ -5,21 +5,45 @@ body {
   color: black;
 }
 
-h1 {
-  margin: 0;
+/* Set up grid layer for general layout */
+/* Body container */
+#body-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 10px;
+  grid-template-areas: 
+    "header  header"
+    "body    sidebar";
 }
 
-header > ul {
+/* Header for navigation */
+#main-header {
+  grid-area: header;
+}
+
+/* Main content */
+#content {
+  grid-area: body;
+}
+
+/* Side bar */
+#progress {
+  grid-area: sidebar;
+}
+
+/* Set up grid layer for header for links */
+/* Header container */
+#main-header > ul {
   list-style-type: none;
   padding: 0;
   margin: 0px;
   background-color: beige;
 
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 3fr) 2fr;
   grid-template-rows: 45px;
 }
 
+/* Configuring layout for links in header */
 .header-item {
   background-color: #04aa6d;
   color: #000000;
@@ -28,8 +52,15 @@ header > ul {
   font-size: 20px;
 }
 
+/* Hovering link */
 .header-item:hover {
   background-color: #40f34f;
+}
+
+/* Currently active link
+   TODO: Add script to make this work */
+.header-item.active {
+  font-weight: bold;
 }
 
 .header-item > li {
@@ -38,12 +69,15 @@ header > ul {
   line-height: 45px;
 }
 
+/* Special box for login/logout */
 #login {
   text-align: center;
+  font-size: 14px;
   grid-column: 7 / 8;
   line-height: 45px;
 }
 
+/* In a logged out state there are two links */
 #login > span {
   display: inline-block;
   vertical-align: middle;
