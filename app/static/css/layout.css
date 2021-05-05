@@ -9,6 +9,48 @@ h1 {
     margin: 0;
 }
 
+header > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 5px 15px 5px;
+    background-color: beige;
+
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 45px;
+}
+
+.header-item {
+    background-color: #04aa6d;
+    color: #000000;
+    text-decoration: none;
+    font-family:'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+
+.header-item:hover {
+    background-color: #40f34f;
+}
+
+.header-item > li {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 45px;
+}
+
+
+#login {
+    text-align: center;
+    grid-column: 7 / 8;
+    line-height: 45px;
+}
+
+#login > span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
 /* Background color and overflow protection*/
 #topbar {
     background-color: black;
