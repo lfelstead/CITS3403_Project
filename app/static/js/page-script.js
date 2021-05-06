@@ -1,19 +1,38 @@
-/* JavaScript for the header */
-// When the user scrolls the page, execute myFunction
-// window.onscroll = function() {myFunction()};
+const NUMBER_OF_HEADER_ITEMS = 6 // Not including Register/Login
 
-// Get the topbar
-// var topbar = document.getElementById("topbar");
-
-// Get the offset position of the topbar
-// var sticky = topbar.offsetTop;
-
-// Add the sticky class to the topbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
-/* function myFunction() {
-  if (window.pageYOffset >= sticky) {
-    topbar.classList.add("sticky")
-  } else {
-    topbar.classList.remove("sticky");
+/* Document Ready: */
+$(document).ready(() => {
+  // Load on page specific scripts
+  switch(window.location.pathname) {
+    case "/home":
+      $("#debug").text("test");
+      break;
+    case "/one":
+      break;
+    case "quiz":
+      break;
+    default:
   }
-} */
+  setHeader();
+});
 
+function topicInit() {
+
+}
+
+/**
+ * Sets active class to header item corrosponding to current page     \
+ * Does not apply to login/register buttons but login/register pages
+ * should disable all active classes                                  \
+ */
+function setHeader() {
+  // Remove active class from any element in header
+  $("#main-header ul a.active").removeClass("active");
+  
+  // Add active class to corrosponding header item
+  let $headerItems = $("#main-header ul a");
+  for(let i = 0; i < NUMBER_OF_HEADER_ITEMS; i++) {
+    if(window.location.pathname == $headerItems[i].pathname)
+      $($headerItems[i]).addClass("active");
+  }
+}
