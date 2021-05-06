@@ -12,21 +12,21 @@ def home():
 
 @app.route("/one")
 def one():
-    return render_template("topic-one.html")
+    return render_template("topics/topic-one.html")
 
 # TEMPORARY:
 
 @app.route("/two")
 def two():
-    return render_template("topic-one.html")
+    return render_template("topics/topic-one.html")
 
 @app.route("/three")
 def three():
-    return render_template("topic-one.html")
+    return render_template("topics/topic-one.html")
 
 @app.route("/four")
 def four():
-    return render_template("topic-one.html")
+    return render_template("topics/topic-one.html")
 
 @app.route("/quiz", methods = ['GET','POST'])
 def quiz():
