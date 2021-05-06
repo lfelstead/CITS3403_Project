@@ -37,12 +37,13 @@ body {
 
 /* Hovering link */
 .header-item:hover {
-  background-color: #40f34f;
+  background-color: #38d445;
 }
 
 /* Currently active link
    TODO: Add script to make this work */
 .header-item.active {
+  background-color: #afe0b4;
   font-weight: bold;
 }
 
