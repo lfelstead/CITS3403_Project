@@ -16,19 +16,19 @@
   <header id="main-header">
     <ul> 
       <a class="header-item" href="{{url_for('home')}}">
-        <li><img src="{{url_for('static', filename='favicon.ico')}}" alt=""> &nbsp; Home</li>
+        <li><img src="{{url_for('static', filename='favicon.ico')}}" alt=""><span>Home</span></li>
       </a>
       <a class="header-item" href="{{url_for('one')}}">
         <li>TOPIC ONE</li>
       </a>
       <a class="header-item" href="{{url_for('two')}}">
-          <li>TOPIC</li>
+          <li>TOPIC TWO</li>
       </a>
       <a class="header-item" href="{{url_for('three')}}">
-        <li>TOPIC</li>
+        <li>TOPIC THREE</li>
       </a>
       <a class="header-item" href="{{url_for('four')}}">
-        <li>TOPIC</li>
+        <li>TOPIC FOUR</li>
       </a>
       <a class ="header-item" href="{{url_for('quiz')}}">
         <li>Quiz</li>
@@ -50,10 +50,14 @@
     <main id="content">
       {% block content %}{% endblock %}
       <p id="debug"></p>
-      <p id=practice-quiz></p>
+      <div class="practice-quiz-container">
+        <button class="quiz-button"> Test your knowledge </button>
+      </div>
     </main>
     <aside id="progress">
-      p<br>l<br>a<br>c<br>e
+      <div>
+        p<br>l<br>a<br>c<br>e
+      </div>
     </aside>
   </div>
 </body>

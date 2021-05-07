@@ -1,3 +1,17 @@
+/* Global Variables for Colors, etc. */
+:root {
+  --header-default: #04aa6d;
+  --header-hover: #38d445;
+  --header-active: #afe0b4;
+  --header-login: #c7c7c7;
+  --header-height: 45px;
+
+  --shading: #e4e4e4;
+
+  --button-primary-color: #44c767;
+  --button-secondary-color: #5cbf2a;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -19,16 +33,16 @@ body {
   list-style-type: none;
   padding: 0;
   margin: 0px;
-  background-color: beige;
+  background-color: var(--header-login);
 
   display: grid;
   grid-template-columns: repeat(6, 3fr) 2fr;
-  grid-template-rows: 45px;
+  grid-template-rows: var(--header-height);
 }
 
 /* Configuring layout for links in header */
 .header-item {
-  background-color: #04aa6d;
+  background-color: var(--header-default);
   color: #000000;
   text-decoration: none;
   font-family: "Courier New", Courier, monospace;
@@ -37,20 +51,31 @@ body {
 
 /* Hovering link */
 .header-item:hover {
-  background-color: #38d445;
+  background-color: var(--header-hover);
 }
 
 /* Currently active link
    TODO: Add script to make this work */
 .header-item.active {
-  background-color: #afe0b4;
+  background-color: var(--header-active);
   font-weight: bold;
 }
 
 .header-item > li {
   text-align: center;
   vertical-align: middle;
-  line-height: 45px;
+  line-height: var(--header-height);
+}
+
+/* bottom used to center icon */
+.header-item img {
+  padding-right: 15px;
+  position: relative;
+  bottom: -3px;
+}
+
+.header-item img + span {
+  margin: 0;
 }
 
 /* Special box for login/logout */
@@ -58,7 +83,7 @@ body {
   text-align: center;
   font-size: 14px;
   grid-column: 7 / 8;
-  line-height: 45px;
+  line-height: var(--header-height);
 }
 
 /* In a logged out state there are two links */
@@ -80,11 +105,17 @@ body {
 /* Main content */
 #content {
   grid-area: body;
+  padding: 0px 2%;
 }
   
 /* Side bar */
+/* BANDAID FIX APPLIED: STICKY POSITIONED HEADERSIZE DOWN*/
+/* Recommended: Remove sidebar from grid */
 #progress {
   grid-area: sidebar;
+  position: sticky;
+  align-self: start;
+  top: var(--header-height);
 }
 
 .main-text {
@@ -92,4 +123,52 @@ body {
   margin-left: 15%;
   text-align: center;
   font-size: 20px;
+}
+
+/* Practice Quiz Area */
+.practice-quiz-container {
+  padding: 10px 15px;
+  border-radius: 8px;
+  background-color: var(--shading);
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Button for quizzes */
+.quiz-button {
+  padding: 8px 10px;
+  border-radius: 8px;
+  display: inline-block;
+  background: linear-gradient(var(--button-primary-color), var(--button-secondary-color));
+  background-color: var(--button-primary-color);
+
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.quiz-question {
+  color: red;
+}
+
+.quiz-values {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+/* Responsive for smaller screen sizes */
+@media only screen and (max-width: 600px) {
+  
+  .header-item {
+    font-size: 8px;
+  }
+
+  .header-item img {
+    display: none;
+  }
+
+  .header-item:first-child {
+    text-align: left;
+  }
 }

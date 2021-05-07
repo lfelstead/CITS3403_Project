@@ -2,12 +2,17 @@ const NUMBER_OF_HEADER_ITEMS = 6 // Not including Register/Login
 
 /* Document Ready: */
 $(document).ready(() => {
+  // Stops saving requests to cache
+  // Can/Shoul be removed once json files are finalised
+  $.ajaxSetup({cache : false});
+
   // Load on page specific scripts
   switch(window.location.pathname) {
     case "/home":
       $("#debug").text("test");
       break;
     case "/one":
+      topicQuizInit(quizNumber=0);
       break;
     case "quiz":
       break;
@@ -16,8 +21,26 @@ $(document).ready(() => {
   setHeader();
 });
 
-function topicInit() {
+function topicQuizInit(quizNumber=null) {
+  $("#debug").text(quizNumber);
 
+  $(".quiz-button").click(() => {
+    // FOR DEBUGGING:
+    // $("#debug").text(quizNumber);
+    // AJAX Request for question
+    $.getJSON("../../static/json/questions.json", success = (data) => {
+      let questionObj = data.practice[quizNumber];
+      // FOR DEBUGGING: 
+      // console.log(data)
+      let builtString = "<p class='quiz-question'>" + questionObj.question + "<p>";
+      builtString += "<p class='quiz-values'>Values: " + questionObj["default-values"] + "</p>";
+      // Input:
+      // Button for checking solution:
+
+      $(".quiz-button").after(builtString);
+    });
+    
+  });
 }
 
 /**

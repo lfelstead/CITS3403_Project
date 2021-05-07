@@ -1,0 +1,14 @@
+{
+  "practice" : [
+    {
+      "question" : "Resistor A is connected in series with resistor B as shown",
+      "default-values" : "1000V, 200A",
+      "answer" : "answer_placeholder"
+    },
+    {
+      "question" : "question_placeholder",
+      "default-values" : "",
+      "answer" : "answer_placeholder"
+    }
+  ]
+}
