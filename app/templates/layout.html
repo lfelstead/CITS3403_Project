@@ -51,14 +51,19 @@
       {% block content %}{% endblock %}
       <p id="debug"></p>
       <div class="practice-quiz-container">
-        <button class="quiz-button"> Test your knowledge </button>
+        <button class="quiz-button" id="show-quiz"> Test your knowledge </button>
+        <form class="practice-form" action="">
+          <input type="text" class="quiz-input" id="practice-answer"> 
+          <button type="submit" class="quiz-button"> Check answer </button>
+        </form>
       </div>
     </main>
     <aside id="progress">
-      <div>
-        p<br>l<br>a<br>c<br>e
-      </div>
+      <div id="progress-bar"></div>
     </aside>
   </div>
+  <footer> 
+    <a href="javascript:resetProgress()">Reset your progress</a>
+  </footer>
 </body>
 </html>
