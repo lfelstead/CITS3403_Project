@@ -4,6 +4,11 @@ from flask_login import current_user
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
+import random
+
+# stores questions for quiz
+random.seed()
+QUESTION_DATA = []
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2,max=15)])
@@ -37,3 +42,28 @@ class QuizForm(FlaskForm):
     def validate_answer(self, answer):
         if answer.data != 10:
             raise ValidationError('incorrect answer: {0} when should be 10'.format(answer.data))
+
+def Make_Questions():
+    questions = ["enter _ in the box"]
+    data = []
+    for question in questions:
+        q = []
+        for section in question.split("_"):
+            q.append(section)
+            q.append(random.randrange(1, 20))
+        del q[-1]
+        data.append(q)
+    return data
+
+def Get_Questions():
+    return QUESTION_DATA
+
+QUESTION_DATA = Make_Questions()
+ 
+class QuizForm(FlaskForm):
+    answer = IntegerField('answer', validators=[DataRequired()])
+
+    submit = SubmitField('Check')
+    def validate_answer(self, answer):
+        if answer.data != QUESTION_DATA[0][1]:
+            raise ValidationError('incorrect answer: {0} when should be {1}'.format(answer.data, QUESTION_DATA[0][1]))
