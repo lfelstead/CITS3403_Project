@@ -1,6 +1,6 @@
 from app import app, db, bcrypt
 from flask import Flask, render_template, flash, redirect, url_for, request
-from app.forms import LoginForm, RegistrationForm, QuizForm, Get_Questions
+from app.forms import LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results
 from app.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -16,9 +16,15 @@ def quiz():
 
     form = QuizForm()
     if form.validate_on_submit():
-        flash(f'correct answer.', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('results'))
     return render_template("quiz.html", data=data, form=form)
+
+@app.route("/results", methods = ['GET','POST'])
+def results():
+    data = Get_Results()
+    score = str(sum(data)) + "/" + str(len(data))
+
+    return render_template("results.html", data=score)
 
 @app.route("/register", methods = ['GET','POST'])
 def register():

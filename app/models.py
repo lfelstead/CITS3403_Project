@@ -18,11 +18,10 @@ class User(db.Model, UserMixin):
     
 class Scores (db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    question1 = db.Column(db.Integer)
-    question2 = db.Column(db.Integer)
-    question3 = db.Column(db.Integer)
+    questionid = db.Column(db.Integer, nullable=False)
+    correct = db.Column(db.Boolean, nullable=False)
     userid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Scores('{self.id}', '{self.question1}', '{self.question2}', '{self.question3}')" 
+        return f"Scores('{self.id}', '{self.questionid}', '{self.correct}', '{self.userid}')" 
    
