@@ -1,22 +1,40 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>Quiz</h1>
-    <div class = "content-section">
+    <div>
         <form method = "POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class = "form-group">
-                <b> enter 10 in the box</b>
+                <!-- Question 1 -->
+                <p>
+                    {% for item in data[0] %}
+                        {{item}}
+                    {% endfor %}
+                </p>
                 <div class = "form-group">
-                    {% if form.answer.errors %}
-                        {{ form.answer(class="form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for error in form.answer.errors %}
-                                <span>{{ error }}</span>
-                            {%endfor%}
-                        </div>
-                    {% else %}
-                        {{ form.answer(class="form-control form-control-lg") }}
-                    {%endif%}
+                    {{ form.answer1(class="form-control form-control-lg") }}
+                </div>
+
+                <!-- Question 2 -->
+                <p>
+                    {% for item in data[1] %}
+                        {{item}}
+                    {% endfor %}
+                </p>
+                <div class = "form-group">
+
+                        {{ form.answer2(class="form-control form-control-lg") }}
+                </div>
+
+                <!-- Question 3 -->
+                <p>
+                    {% for item in data[2] %}
+                        {{item}}
+                    {% endfor %}
+                </p>
+                <div class = "form-group">
+
+                        {{ form.answer3(class="form-control form-control-lg") }}
                 </div>
             </fieldset>
             <div class = "form-group">
