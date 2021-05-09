@@ -15,20 +15,20 @@
 <body>
   <header id="main-header">
     <ul> 
-      <a class="header-item active" href="{{url_for('home')}}">
-        <li><img src="{{url_for('static', filename='favicon.ico')}}" alt=""> &nbsp; Home</li>
+      <a class="header-item" href="{{url_for('home')}}">
+        <li><img src="{{url_for('static', filename='favicon.ico')}}" alt=""><span>Home</span></li>
       </a>
-      <a class="header-item" href="">
-        <li>TOPIC</li>
+      <a class="header-item" href="{{url_for('one')}}">
+        <li>TOPIC ONE</li>
       </a>
-      <a class="header-item" href="">
-          <li>TOPIC</li>
+      <a class="header-item" href="{{url_for('two')}}">
+          <li>TOPIC TWO</li>
       </a>
-      <a class="header-item" href="">
-        <li>TOPIC</li>
+      <a class="header-item" href="{{url_for('three')}}">
+        <li>TOPIC THREE</li>
       </a>
-      <a class="header-item" href="">
-        <li>TOPIC</li>
+      <a class="header-item" href="{{url_for('four')}}">
+        <li>TOPIC FOUR</li>
       </a>
       <a class ="header-item" href="{{url_for('quiz')}}">
         <li>Quiz</li>
@@ -49,10 +49,21 @@
   <div id="body-wrapper">
     <main id="content">
       {% block content %}{% endblock %}
+      <p id="debug"></p>
+      <div class="practice-quiz-container">
+        <button class="quiz-button" id="show-quiz"> Test your knowledge </button>
+        <form class="practice-form" action="">
+          <input type="text" class="quiz-input" id="practice-answer"> 
+          <button type="submit" class="quiz-button"> Check answer </button>
+        </form>
+      </div>
     </main>
     <aside id="progress">
-      p<br>l<br>a<br>c<br>e
+      <div id="progress-bar"></div>
     </aside>
   </div>
+  <footer> 
+    <a href="javascript:resetProgress()">Reset your progress</a>
+  </footer>
 </body>
 </html>

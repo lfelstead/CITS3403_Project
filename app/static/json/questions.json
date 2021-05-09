@@ -1,0 +1,28 @@
+{
+  "practice" : [
+    {
+      "question" : "Resistor A is connected in series with resistor B as shown.",
+      "diagram-locale" : "",
+      "default-values" : ["1000V", "200A", "400&#x3A9"],
+      "answer" : "answer_placeholder"
+    },
+    {
+      "question" : "Resistor A is connected in parallel with resistor B as shown.",
+      "diagram-locale" : "",
+      "default-values" : "",
+      "answer" : "answer_placeholder"
+    },
+    {
+      "question" : "Placeholder",
+      "diagram-locale" : "",
+      "default-values" : "",
+      "answer" : "answer_placeholder"
+    },
+    {
+      "question" : "Placeholder.",
+      "diagram-locale" : "",
+      "default-values" : "",
+      "answer" : "answer_placeholder"
+    }
+  ]
+}
