@@ -1,7 +1,7 @@
 from app import app, db, bcrypt
 from flask import Flask, render_template, flash, redirect, url_for, request
 from app.forms import LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results
-from app.models import User
+from app.models import User, Scores
 from flask_login import login_user, current_user, logout_user, login_required
 
 
@@ -12,12 +12,29 @@ def home():
 
 @app.route("/quiz", methods = ['GET','POST'])
 def quiz():
-    data = Get_Questions()
+    if current_user.is_authenticated:
+        data = Get_Questions()
 
-    form = QuizForm()
-    if form.validate_on_submit():
-        return redirect(url_for('results'))
-    return render_template("quiz.html", data=data, form=form)
+        form = QuizForm()
+        if form.validate_on_submit():
+            # add scores to database
+            data = Get_Results()
+
+            # remove pre-existing attempts
+            Scores.query.filter(Scores.userid == current_user.id).delete()
+            
+            # scores are stored in the database
+            scores = Scores(userid=current_user.id, questionid="q1", correct=data[0])
+            db.session.add(scores)
+            scores = Scores(userid=current_user.id, questionid="q2", correct=data[1])
+            db.session.add(scores)
+            scores = Scores(userid=current_user.id, questionid="q3", correct=data[2])
+            db.session.add(scores)
+            db.session.commit()
+            
+            return redirect(url_for('results'))
+        return render_template("quiz.html", data=data, form=form)
+    return redirect(url_for('login'))
 
 @app.route("/results", methods = ['GET','POST'])
 def results():
