@@ -1,5 +1,46 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Results</h1>
-    <p> Your score is: {{data}}</p> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<h1>Results</h1>
+<p> Your score is: {{correct}} / 3</p> 
+<div class="row">
+    <div class="col-sm-6"><canvas id="dougnut-chart" style="width:100%;max-width:800px"></canvas></div>
+    <div class="col-sm-6"> Question by question break down:
+        {% for a  in data %}
+        <p class="container"></p>
+            {% for b  in a[0] %}   
+                {{b}}
+            {% endfor %}
+        </p> 
+        {% endfor %}
+    </div>
+
+</div>
+
+<p> We suggest you practice these topics: <p>
+
+<p> Or click here to take the test again </p>
+
+<script type="text/javascript">var myscores = ['{{ correct|tojson }}','{{ incorrect|tojson }}'] ; </script>
+
+<script>
+new Chart("dougnut-chart", {
+type: "doughnut",
+data: {
+    labels: ["Correct", "Incorrect"],
+    datasets: [{
+    backgroundColor: ["#04aa6d","#c7c7c7",],
+    data: myscores
+    }]
+},
+options: {
+    title: {
+    display: true,
+    text: "Number of Correct Answers"
+    }
+}
+});
+</script>
+
 {% endblock %}

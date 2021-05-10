@@ -56,10 +56,9 @@ def quiz():
 
 @app.route("/results", methods = ['GET','POST'])
 def results():
-    data = Get_Results()
-    score = str(sum(data)) + "/" + str(len(data))
-
-    return render_template("results.html", data=score)
+    results = Get_Results()
+    data = zip(Get_Questions(), results)
+    return render_template("results.html", data=data, correct = sum(results), incorrect=len(results)-sum(results))
 
 @app.route("/register", methods = ['GET','POST'])
 def register():
