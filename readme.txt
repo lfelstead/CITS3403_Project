@@ -5,6 +5,7 @@ pip install flask_bcrypt
 pip install flask_login
 pip install flask_wtf
 pip install email_validator
+pip install equation
 
 then:
 python run.py
