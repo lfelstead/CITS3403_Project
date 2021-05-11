@@ -34,7 +34,10 @@
         <li>Quiz</li>
       </a>
       {% if current_user.is_authenticated %}
-      <li id="login"><a href="{{url_for('logout')}}">Logout</a></li>
+      <li id="login">
+        <a href="{{url_for('account', username = current_user.username)}}">Account</a>
+        <a href="{{url_for('logout')}}">Logout</a>
+      </li>
       {% else %}
       <li id="login"> 
         <span>

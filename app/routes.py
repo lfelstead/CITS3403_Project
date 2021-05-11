@@ -74,3 +74,9 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/account/<username>")
+def account(username):
+    test_user = current_user.email
+    test_score = current_user.scores
+    return render_template('account.html', title= 'Account', test_string = test_score)
