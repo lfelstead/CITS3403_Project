@@ -1,9 +1,11 @@
 from app import app, db, bcrypt
 from flask import Flask, render_template, flash, redirect, url_for, request
-from app.forms import LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results
+from app.forms import EditProfileForm, LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results
 from app.models import User, Scores
 from flask_login import login_user, current_user, logout_user, login_required
-
+from datetime import datetime
+from sqlalchemy.exc import IntegrityError
+from sqlalchemy import func
 
 @app.route("/")
 @app.route("/home")
@@ -93,7 +95,36 @@ def logout():
     return redirect(url_for('home'))
 
 @app.route("/account/<username>")
+@login_required
 def account(username):
-    test_user = current_user.email
-    test_score = current_user.scores
-    return render_template('account.html', title= 'Account', test_string = test_score)
+    # user = User.query.filter_by(username=username).first_or_404()
+    user = User.query.filter(func.lower(User.username) == func.lower(username)).first_or_404()
+    test_user = user.email
+    test_score = user.scores
+    is_current = user == current_user
+    
+    return render_template('account.html', title= 'Account', test_string = test_score, user = user, is_current = is_current)
+
+@app.route("/account/edit", methods = ['Get', 'POST'])
+@login_required
+def edit_account():
+    form = EditProfileForm(current_user.username)
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.about_me = form.about_me.data       
+        db.session.commit()
+    
+        flash('Your changes have been saved.')
+        return redirect(url_for("account", username = current_user.username))
+
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.about_me.data = current_user.about_me
+
+    return render_template('edit_account.html', title= 'Edit Account', form = form)
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
