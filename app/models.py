@@ -23,8 +23,9 @@ class Scores (db.Model):
     id = db.Column(db.Integer, primary_key=True)
     questionid = db.Column(db.Integer, nullable=False)
     correct = db.Column(db.Boolean, nullable=False)
+    attempt = db.Column(db.Integer, default = 0, nullable=False)
     userid = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-
+    
     def __repr__(self):
-        return f"Scores('{self.questionid}', '{self.correct}')" 
+        return f"Scores('{self.questionid}', '{self.correct}', '{self.attempt}')" 
    

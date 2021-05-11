@@ -1,3 +1,4 @@
+from sqlalchemy.sql.expression import desc
 from app import app, db, bcrypt
 from flask import Flask, render_template, flash, redirect, url_for, request
 from app.forms import EditProfileForm, LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results
@@ -39,19 +40,33 @@ def quiz():
         if form.validate_on_submit():
             # add scores to database
             data = Get_Results()
-
+         
             # remove pre-existing attempts
-            Scores.query.filter(Scores.userid == current_user.id).delete()
-            
             # scores are stored in the database
-            scores = Scores(userid=current_user.id, questionid="q1", correct=data[0])
-            db.session.add(scores)
-            scores = Scores(userid=current_user.id, questionid="q2", correct=data[1])
-            db.session.add(scores)
-            scores = Scores(userid=current_user.id, questionid="q3", correct=data[2])
-            db.session.add(scores)
-            db.session.commit()
+
+            # Scores.query.filter(Scores.userid == current_user.id).delete()
+
+            #Gets the last attempt by the current user, then updates it.
+
+            try:
+                attempt_count = Scores.query.filter(Scores.userid == current_user.id).order_by(desc('id')).first().attempt + 1
+            except:
+                attempt_count = 0
+            # scores = Scores(userid=current_user.id, questionid="q1", correct=data[0])
+            # db.session.add(scores)
+            # scores = Scores(userid=current_user.id, questionid="q2", correct=data[1])
+            # db.session.add(scores)
+            # scores = Scores(userid=current_user.id, questionid="q3", correct=data[2])
+            # db.session.add(scores)
+            # db.session.commit()
             
+            score_list = []
+            for i in range(len(data)):
+                score_list.append(Scores(userid=current_user.id, questionid=f"q{i+1}", correct=data[i], attempt = attempt_count))
+
+            db.session.add_all(score_list)
+            db.session.commit()
+  
             return redirect(url_for('results'))
         return render_template("quiz.html", data=data, form=form)
     return redirect(url_for('login'))
@@ -101,9 +116,11 @@ def account(username):
     user = User.query.filter(func.lower(User.username) == func.lower(username)).first_or_404()
     test_user = user.email
     test_score = user.scores
+    date = user.last_seen.strftime("%A, %B %d %Y")  
     is_current = user == current_user
-    
-    return render_template('account.html', title= 'Account', test_string = test_score, user = user, is_current = is_current)
+
+    return render_template('account.html', title= 'Account', 
+    test_string = test_score, user = user, is_current = is_current, date = date)
 
 @app.route("/account/edit", methods = ['Get', 'POST'])
 @login_required
