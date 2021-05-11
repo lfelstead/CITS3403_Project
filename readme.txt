@@ -6,6 +6,7 @@ pip install flask_login
 pip install flask_wtf
 pip install email_validator
 pip install equation
+pip install flask_migrate
 
 then:
 python run.py
