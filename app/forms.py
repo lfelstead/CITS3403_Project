@@ -62,6 +62,8 @@ def Make_Questions():
     questions = [["Q1. enter _ in the box", "x+y+z"], ["Q2. what is _ + _?", "x+y+z"], ["Q3. What is _ * _?", "x*y+z"]]
     data = []
     QUESTION_DATA.clear()
+    ANSWERS_DATA.clear()
+
     for question, equation in questions:
         q = []
         gen_numbers = [0,0,0]
@@ -88,6 +90,8 @@ def Get_Answers():
 def Get_Results():
     return CORRECT_ANSWERS
  
+Make_Questions()
+
 class QuizForm(FlaskForm):
     answer1 = IntegerField('answer1')
     answer2 = IntegerField('answer2')
