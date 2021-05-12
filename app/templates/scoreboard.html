@@ -1,9 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
 <p>current user stats</p>
-{{current_user}}
- <br>
- <p> ##########</p>
- <p>this will be put in a table</p>
- {{scores}}
+    {{current_user}}
+    <br>
+    <table class="table table-striped table-dark" style="width:80%; text-align:center; margin:0% 10%;">
+        <tr>
+        <th>Rank</th>
+        <th>Username</th> 
+        <th>Number of Correct Answers</th>
+        </tr>
+        {% for user  in scores %}
+        <tr>
+            <td>{{user[2]}}</td>
+            <td>{{user[1]}}</td> 
+            <td>{{user[0]}}</td>
+        </tr>
+        {% endfor %} 
+    </table>
 {% endblock %}

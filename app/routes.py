@@ -171,7 +171,12 @@ def scoreboard():
         score = 0
         for item in Scores.query.filter_by(userid=userid.id).all():
             score += item.correct
-        scores.append((score, userid.username))
+        scores.append([score, userid.username])
     scores.sort(reverse=True)
+    # get ranking for each user
+    counter = 1
+    for score in scores:
+        score.append(counter)
+        counter += 1
 
     return render_template('scoreboard.html', current_user=data, scores=scores)
