@@ -61,7 +61,12 @@ def Make_Questions():
     # currently can make and solve equations of up to three numbers, this can be increased later if necessary
     questions = [["Q1. enter _ in the box", "x+y+z"], ["Q2. what is _ + _?", "x+y+z"], ["Q3. What is _ * _?", "x*y+z"]]
     data = []
+
+    # reset from previous attempts
     QUESTION_DATA.clear()
+    ANSWERS_DATA.clear()
+    CORRECT_ANSWERS = [False, False, False]
+
     for question, equation in questions:
         q = []
         gen_numbers = [0,0,0]
@@ -88,6 +93,8 @@ def Get_Answers():
 def Get_Results():
     return CORRECT_ANSWERS
  
+Make_Questions()
+
 class QuizForm(FlaskForm):
     answer1 = IntegerField('answer1')
     answer2 = IntegerField('answer2')

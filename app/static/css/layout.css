@@ -179,6 +179,12 @@ footer{
   width: 100%;
 }
 
+.results-question-box{
+  margin: 20px;
+  padding: 10px;
+}
+
+
 /* Responsive for smaller screen sizes */
 @media only screen and (max-width: 600px) {
   

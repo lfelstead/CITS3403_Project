@@ -1,7 +1,7 @@
 from sqlalchemy.sql.expression import desc
 from app import app, db, bcrypt
 from flask import Flask, render_template, flash, redirect, url_for, request
-from app.forms import EditProfileForm, LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results, Make_Questions
+from app.forms import EditProfileForm, LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results, Make_Questions, Get_Answers
 from app.models import User, Scores
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
@@ -34,7 +34,6 @@ def four():
 @app.route("/quiz", methods = ['GET','POST'])
 def quiz():
     if current_user.is_authenticated:
-        Make_Questions()
         data = Get_Questions()
 
         form = QuizForm()
@@ -53,14 +52,7 @@ def quiz():
                 attempt_count = Scores.query.filter(Scores.userid == current_user.id).order_by(desc('id')).first().attempt + 1
             except:
                 attempt_count = 0
-            # scores = Scores(userid=current_user.id, questionid="q1", correct=data[0])
-            # db.session.add(scores)
-            # scores = Scores(userid=current_user.id, questionid="q2", correct=data[1])
-            # db.session.add(scores)
-            # scores = Scores(userid=current_user.id, questionid="q3", correct=data[2])
-            # db.session.add(scores)
-            # db.session.commit()
-            
+
             score_list = []
             for i in range(len(data)):
                 score_list.append(Scores(userid=current_user.id, questionid=f"q{i+1}", correct=data[i], attempt = attempt_count))
@@ -75,8 +67,18 @@ def quiz():
 @app.route("/results", methods = ['GET','POST'])
 def results():
     results = Get_Results()
-    data = zip(Get_Questions(), results)
-    return render_template("results.html", data=data, correct = sum(results), incorrect=len(results)-sum(results))
+    correct = sum(results)
+    if correct < 2:
+        msg = "Your score is {0}/3 but that ok. Review the different topics and reattempt the quiz.".format(correct)
+    elif correct == 2:
+        msg = "Your score is {0}/3. Well done! Review the different topics and reattempt the quiz.".format(correct)
+    elif correct == 3:
+        msg = "Your score is {0}/3. Wow a perfect score! Still, it wouldn't hurt to review the different topics and reattempt the quiz.".format(correct)
+    questions = list(Get_Questions())
+    answers = list(Get_Answers())
+
+    Make_Questions()
+    return render_template("results.html", data=zip(questions, answers), msg=msg, correct = correct, incorrect=len(results)-sum(results))
 
 @app.route("/register", methods = ['GET','POST'])
 def register():
