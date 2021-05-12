@@ -156,3 +156,22 @@ def users():
         print (user.username)
 
     return render_template('users.html', title= 'Users', all_users = users_in_database)
+
+@app.route("/scoreboard")
+@login_required
+def scoreboard():
+    # gets all of the current users attempts
+    data = Scores.query.filter_by(userid=current_user.id).all()
+
+    # sums up the total amount of correct answers for each user
+    all_users = User.query.all()
+    scores = []
+
+    for userid in all_users:
+        score = 0
+        for item in Scores.query.filter_by(userid=userid.id).all():
+            score += item.correct
+        scores.append((score, userid.username))
+    scores.sort(reverse=True)
+
+    return render_template('scoreboard.html', current_user=data, scores=scores)
