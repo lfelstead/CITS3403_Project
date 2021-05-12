@@ -61,6 +61,7 @@ def Make_Questions():
     # currently can make and solve equations of up to three numbers, this can be increased later if necessary
     questions = [["Q1. enter _ in the box", "x+y+z"], ["Q2. what is _ + _?", "x+y+z"], ["Q3. What is _ * _?", "x*y+z"]]
     data = []
+    QUESTION_DATA.clear()
     for question, equation in questions:
         q = []
         gen_numbers = [0,0,0]
@@ -71,20 +72,21 @@ def Make_Questions():
             q.append(gen_numbers[index])
         
         q.append(question[-1])
-        data.append(q)
+        QUESTION_DATA.append(q)
         
         # generate equation from string and solves it with the randomly generated numbers
         eq = Expression(equation,["y","x","z"])
         ANSWERS_DATA.append(eq(gen_numbers[0], gen_numbers[1], gen_numbers[2]))
-    return data
 
+# used by routes.py for quiz and results page
 def Get_Questions():
     return QUESTION_DATA
 
+def Get_Answers():
+    return ANSWERS_DATA
+
 def Get_Results():
     return CORRECT_ANSWERS
-
-QUESTION_DATA = Make_Questions()
  
 class QuizForm(FlaskForm):
     answer1 = IntegerField('answer1')
