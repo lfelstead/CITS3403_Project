@@ -2,27 +2,30 @@
 {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-<h1>Results</h1>
-<p> Your score is: {{correct}} / 3</p> 
+<h1 style="text-align: center; margin: 8%;">Results</h1>
 <div class="row">
-    <div class="col-sm-6"><canvas id="dougnut-chart" style="width:100%;max-width:800px"></canvas></div>
-    <div class="col-sm-6"> Question by question break down:
-        {% for question  in data %}
-        <div class="results-question-box">
-            <p>{% for q  in question[0] %}
-                {{q}}
-            {% endfor %}</p>
-            <p>{{question[1]}}</p>
-        </div> 
-        {% endfor %}
-
+    <div class="col-sm-6" style="padding: 2% 5%;">
+        <p> {{msg}}</p>
+        <p> Put more text here</p>
     </div>
+    <div class="col-sm-6"><canvas id="dougnut-chart" style="width:100%;max-width:800px"></canvas></div>
 
 </div>
 
-<p> We suggest you practice these topics: <p>
+<div style="margin: 0 5%"> Correct Answers
+    {% for question  in data %}
+    <div class="results-question-box">
+        <p>{% for q  in question[0] %}
+            {{q}}
+        {% endfor %}</p>
+        <p>{{question[1]}}</p>
+    </div> 
+    {% endfor %}  
+</div>
 
-<p> Or click here to take the test again </p>
+<div class="text-center">
+    <a class="btn btn-outline-info" type="submit" href="quiz" style="position: center;">Reattempt Quiz</a>
+</div>
 
 <script type="text/javascript">var myscores = ['{{ correct|tojson }}','{{ incorrect|tojson }}'] ; </script>
 
