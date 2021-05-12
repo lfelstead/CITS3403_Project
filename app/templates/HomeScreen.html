@@ -5,7 +5,10 @@
     <title>Website Title</title>
 
     <!-- link stylesheet for topbar-->
-    <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/layout.css')}}"
+    />
   </head>
   <body>
     <!-- create topbar-->
@@ -51,12 +54,18 @@
         this:
         <br />
       </p>
-      <img src="{{url_for('static', filename='img/Resistor.jpg')}}" alt="Image Didnt load :c" />
+      <img
+        src="{{url_for('static', filename='img/Resistor.jpg')}}"
+        alt="Image Didnt load :c"
+      />
       <p>
         In a diagram however, a resistor can be displayed like either of these:
         <br />
       </p>
-      <img src="{{url_for('static', filename='img/Resistor-Symbols.png')}}" alt="Image Didnt load :c" />
+      <img
+        src="{{url_for('static', filename='img/Resistor-Symbols.png')}}"
+        alt="Image Didnt load :c"
+      />
       <p>
         for our purposes we will always use the box symbol to IEC standards
         <br />
@@ -90,6 +99,9 @@
       </p>
     </div>
 
-    <script type="text/javascript" src="{{url_for('static', filename='js/TopBar.js')}}"></script>
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='js/TopBar.js')}}"
+    ></script>
   </body>
 </html>

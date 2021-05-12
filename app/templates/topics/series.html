@@ -1,0 +1,66 @@
+{% extends "layout.html" %} {% block content %}
+<div class="main-text">
+  <h1>This Series Just Keeps getting Better!</h1>
+  <p>
+    Resistors connected one after the other are connected in series. This looks
+    like:
+    <br />
+  </p>
+  <img
+    src="{{url_for('static', filename='img/Series Diagram.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <p>
+    <br />
+    Calculating the overall resistance of circuits only in series is easy! All
+    you need to do is add up all the individual resistances using the formula:
+    <br />
+  </p>
+  <!-- STILL NEED FORMULA CLASS -->
+  <p>R<sub>Total</sub> = R<sub>1</sub> + R<sub>2</sub> + R<sub>3</sub> + ...</p>
+  <p>
+    <br />
+    This means that for this circuit:
+    <br />
+  </p>
+  <img
+    src="{{url_for('static', filename='img/Series Diagram 2.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <p>
+    <br />
+    The resistance is:
+    <br />
+  </p>
+  <!-- formula class -->
+  <p>100Ω + 200Ω + 500Ω = 800Ω</p>
+  <p>
+    As long as the final resistance is the same, the resistors can be arranged f
+    in a variety of ways, whilst still giving the same result.
+    <br />
+    <br />
+    So, all four of these circuits give the same voltage of 800 Ω:
+  </p>
+  <img
+    src="{{url_for('static', filename='img/Series Diagram 2.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <img
+    src="{{url_for('static', filename='img/Series Diagram 3.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <img
+    src="{{url_for('static', filename='img/Series Diagram 4.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <img
+    src="{{url_for('static', filename='img/Series Diagram 5.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <p>
+    Sometimes when resistor arrangement gets more complicated, if you spot a set
+    of resistors in series its useful to substitute one resistor in, instead of
+    several. (like the bottom right diagram)
+  </p>
+</div>
+{% endblock %}
