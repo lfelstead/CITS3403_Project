@@ -14,6 +14,9 @@ QUESTION_DATA = []
 ANSWERS_DATA = []
 CORRECT_ANSWERS = [False, False, False]
 
+
+import re
+
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2,max=15)])
     email = StringField('Email', validators=[DataRequired(),Email()])
@@ -23,13 +26,13 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
     
     def validate_username(self, username):
-        # user = User.query.filter_by(username=username.data).first()
         user = User.query.filter(func.lower(User.username) == func.lower(username.data)).first()
-
 
         if user:
             raise ValidationError('That username is taken. Please choose a different one')
-    
+        elif not bool(re.match("^[A-Za-z0-9_]*$", username.data)):
+            raise ValidationError('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one')
+
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
@@ -54,8 +57,12 @@ class EditProfileForm(FlaskForm):
         if username.data != self.original_username:
             #user = User.query.filter_by(username=self.username.data).first()
             user = User.query.filter(func.lower(User.username) == func.lower(self.username.data)).first()
+            
             if user is not None:
-                raise ValidationError('Please use a different username.')
+                raise ValidationError('That username is taken. Please choose a different one')
+            elif not bool(re.match("^[A-Za-z0-9_]*$", username.data)):
+                raise ValidationError('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one')
+
 
 def Make_Questions():
     # currently can make and solve equations of up to three numbers, this can be increased later if necessary
