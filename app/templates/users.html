@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Users</h1>
+
+{% for item in all_users %}
+    {{item}} </br>
+{% endfor %}
+{% endblock %}

@@ -115,15 +115,13 @@ def logout():
 @app.route("/account/<username>")
 @login_required
 def account(username):
-    # user = User.query.filter_by(username=username).first_or_404()
     user = User.query.filter(func.lower(User.username) == func.lower(username)).first_or_404()
-    test_user = user.email
-    test_score = user.scores
+    score = user.scores
     date = user.last_seen.strftime("%A, %B %d %Y")  
     is_current = user == current_user
 
     return render_template('account.html', title= 'Account', 
-    test_string = test_score, user = user, is_current = is_current, date = date)
+    user_score = score, user = user, is_current = is_current, date = date)
 
 @app.route("/account/edit", methods = ['Get', 'POST'])
 @login_required
@@ -148,3 +146,13 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+
+@app.route("/users")
+@login_required
+def users():
+    users_in_database = User.query.all()
+
+    for user in users_in_database:
+        print (user.username)
+
+    return render_template('users.html', title= 'Users', all_users = users_in_database)

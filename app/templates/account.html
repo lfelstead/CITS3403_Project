@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
     <h1>{{user.username}}'s Account </h1>
-    <p> Score string: {{test_string}}</p>
+    <p> Score string: {{user_score}}</p>
     {% if user.about_me %}<p>About Me:<br />{{ user.about_me }}</p>{% endif %}
     {% if user.last_seen %}<p>Last seen on: {{ date }}</p>{% endif %}
 

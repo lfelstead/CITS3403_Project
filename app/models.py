@@ -17,7 +17,7 @@ class User(db.Model, UserMixin):
     scores = db.relationship('Scores', backref='user_info', lazy=True)
     
     def __repr__(self):
-        return f"User('{self.username}','{self.email}')"
+        return f"User('{self.username}','{self.email}', '{self.last_seen}')"
     
 class Scores (db.Model):
     id = db.Column(db.Integer, primary_key=True)
