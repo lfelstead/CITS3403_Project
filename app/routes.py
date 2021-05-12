@@ -67,8 +67,8 @@ def quiz():
 @app.route("/results", methods = ['GET','POST'])
 def results():
     results = Get_Results()
-    questions = Get_Questions()
-    answers = Get_Answers()
+    questions = list(Get_Questions())
+    answers = list(Get_Answers())
 
     Make_Questions()
     return render_template("results.html", data=zip(questions, answers), results=results, correct = sum(results), incorrect=len(results)-sum(results))
