@@ -60,6 +60,38 @@ body {
   font-weight: bold;
 }
 
+/* Header dropdown selection */
+.header-dropdown {
+  display: inline-block;
+  width: auto;
+}
+
+.header-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  text-align: center;
+  min-width: 15%;
+}
+
+.header-dropdown-content a {
+  padding: 10px;
+  display: block;
+}
+
+.header-dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.header-dropdown:hover .header-dropdown-content {
+  display: block;
+}
+
+.header-dropdown:hover .header-dropbtn {
+  background-color: var(--header-hover);
+}
+
+
 /* Topics finished */
 .header-item.finished {
   text-decoration: underline;
