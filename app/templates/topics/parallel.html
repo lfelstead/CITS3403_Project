@@ -1,0 +1,68 @@
+{% extends "layout.html" %} {% block content %}
+<div class="main-text">
+  <h1>Unparalleled levels of learning</h1>
+  <p>
+    Resistors in parallel are connected next to each other in the same split
+    circuit. That looks like this:
+  </p>
+  <img
+    src="{{url_for('static', filename='img/Parallel 1.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <p>
+    The formulas this time get a bit harder AND there is two of them. For a set
+    of two resistors in parallel the formula is:
+    <br />
+    <br />
+    R<sub>T</sub> = <sup>R<sub>1</sub> * R<sub>2</sub></sup
+    >&frasl;<sub>R<sub>1</sub> + R<sub>2</sub></sub>
+    <br>
+    <br>
+    And the formula for three or more resistors in parallel is:
+    <br>
+    <br>
+    <sup>1</sup>&frasl;<sub>R<sub>T</sub></sub></sub> = <sup>1</sup>&frasl;<sub>R<sub>1</sub></sub></sub>
+    + <sup>1</sup>&frasl;<sub>R<sub>2</sub></sub></sub> + <sup>1</sup>&frasl;<sub>R<sub>3</sub></sub></sub>
+    + ...
+    <br>
+    <br>
+    So, to calculate the resistance of this circuit:
+    <br>
+  </p>
+  <img
+  src="{{url_for('static', filename='img/Parallel 2.png')}}"
+  alt="Image Didnt load :c"
+/>
+<p>
+  <br>
+  The resistance is:
+  <br>
+  <br>
+  <sup>400Ω * 700Ω</sup>&frasl;<sub>400Ω + 700Ω</sub> = 254.54Ω
+  <br>
+  <br>
+  <br>
+  But to calculate this circuit:
+</p>
+<img
+  src="{{url_for('static', filename='img/Parallel 3.png')}}"
+  alt="Image Didnt load :c"
+/>
+<p>
+  <br>
+  The resistance is:
+  <br>
+  <br>
+  <sup>1</sup>&frasl;<sub>400Ω</sub> + <sup>1</sup>&frasl;<sub>700Ω</sub> + <sup>1</sup>&frasl;<sub>550Ω</sub> 
+  = <sup>1</sup>&frasl;<sub>0.005746Ω</sub> = 174.01Ω
+  <br>
+  <br>
+  Finally, just like with resistors in series, it can help to substitute one resistor for 
+  all resistors in a parallel block like this:
+</p>
+<img
+  src="{{url_for('static', filename='img/Parallel 4.png')}}"
+  alt="Image Didnt load :c"
+/>
+</div>
+{% endblock %}

@@ -11,25 +11,25 @@ from sqlalchemy import func
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("topics/home.html")
 
 @app.route("/one")
 def one():
-    return render_template("topics/topic-one.html")
+    return render_template("topics/intro.html")
 
 # TEMPORARY:
 
 @app.route("/two")
 def two():
-    return render_template("topics/topic-one.html")
+    return render_template("topics/series.html")
 
 @app.route("/three")
 def three():
-    return render_template("topics/topic-one.html")
+    return render_template("topics/parallel.html")
 
 @app.route("/four")
 def four():
-    return render_template("topics/topic-one.html")
+    return render_template("topics/final.html")
 
 @app.route("/quiz", methods = ['GET','POST'])
 def quiz():
