@@ -15,9 +15,10 @@
 <body>
   <header id="main-header">
     <ul> 
-      <a class="header-item" href="{{url_for('home')}}">
-        <li><img src="{{url_for('static', filename='favicon.ico')}}" alt=""><span>Home</span></li>
+      <a class="header-logo" href="{{url_for('home')}}">
+        <li><img src="{{url_for('static', filename='logo.png')}}" alt="" style="height: 15px;"></li>
       </a>
+      <a></a>
       <div class="header-dropdown header-item"> <li>Topics</li>
         <div class="header-dropdown-content">
           <a href="{{url_for('one')}}">TOPIC ONE </a>
@@ -26,22 +27,21 @@
           <a href="{{url_for('four')}}">TOPIC FOUR</a>
         </div>
      </div>
+     
       <a class ="header-item" href="{{url_for('quiz')}}">
         <li>Quiz</li>
       </a>
+      <a class ="header-item" href="{{url_for('scoreboard')}}">
+        <li>Scoreboard</li>
+      </a>
       {% if current_user.is_authenticated %}
-      <li id="login">
-        <a href="{{url_for('account', username = current_user.username)}}">Account</a>
-        <a href="{{url_for('logout')}}">Logout</a>
-      </li>
+      <a class ="header-item" href="{{url_for('account', username = current_user.username)}}" style="padding-right: 25px; grid-column: 6 / 8;">
+          <li><img src="{{url_for('static', filename='account.png')}}" style="height:25px; margin-right: 5%;" alt=""><span>{{current_user.username}}</span></li>
+      </a>
       {% else %}
-      <li id="login"> 
-        <span>
-          <a href="{{url_for('login')}}">Login</a>
-          <br>
-          <a href="{{url_for('register')}}">Register</a> 
-        </span>
-      </li>
+      <a class ="header-item" href="{{url_for('login')}}" style="padding-right: 25px; grid-column: 6 / 8;">
+        <li href="{{url_for('login')}}">Login</li>
+      </a>
       {% endif %}
     </ul>
   </header>
