@@ -6,7 +6,7 @@ $(document).ready(() => {
   loadProgressBar();
 
   // Stops saving requests to cache
-  // Can/Shoul be removed once json files are finalised
+  // Can/Should be removed once json files are finalised
   $.ajaxSetup({cache : false});
 
   // Load on page specific scripts
@@ -30,7 +30,6 @@ $(document).ready(() => {
       break;
     default:
   }
-  setHeader();
   // Topic specific elements
   if(typeof quizNumber !== 'undefined') {
     topicQuizInit(quizNumber);
@@ -82,22 +81,6 @@ function submitPractice(quizNumber, input, answer) {
   loadProgressBar();
 }
 
-/**
- * Sets active class to header item corrosponding to current page     \
- * Does not apply to login/register buttons but login/register pages
- * should disable all active classes                                  \
- */
-function setHeader() {
-  // Remove active class from any element in header
-  $("#main-header ul a.active").removeClass("active");
-  
-  // Add active class to corrosponding header item
-  let $headerItems = $("#main-header ul a");
-  for(let i = 0; i < NUMBER_OF_HEADER_ITEMS; i++) {
-    if(window.location.pathname == $headerItems[i].pathname)
-      $($headerItems[i]).addClass("active");
-  }
-}
 
 /**
  * To use a progress value to (re)load the progress bar

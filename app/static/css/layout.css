@@ -7,6 +7,7 @@
   --header-height: 55px;
 
   --shading: #e4e4e4;
+  --progress-bar: #191a1a;
 
   --button-primary-color: #191a1a;
   --button-secondary-color: #2a2b2b;
@@ -54,10 +55,11 @@ body {
 }
 
 /* Currently active link */
-.header-item.active {
+/* NOT IN USE */
+/* .header-item.active {
   background-color: var(--header-active);
   font-weight: bold;
-}
+} */
 
 .header-logo {
   margin: auto;
@@ -158,7 +160,7 @@ body {
 /* Progress bar */
 #progress-bar {
   position: fixed;
-  background-color: #44c767;
+  background-color: var(--progress-bar);
   height: 0%;
   width: 20px;
 }
