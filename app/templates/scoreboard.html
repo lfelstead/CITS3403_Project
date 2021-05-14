@@ -1,9 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
-<p>current user stats</p>
-    {{current_user}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<h1 style="text-align:center;margin-top:10%;">Your Previous Scores</h1>
+{% if curr_user_scores != [] %}
+{{curr_user_scores}}
+{{curr_user_attempts}}
+    <div><canvas id="score-bar-graph" style="width:100%;max-width:800px;margin:0% 20%;"></canvas></div>
+{% else %}
+<p style="text-align:center;"> You do not have any previous attempts. Sign in or create an account and take the quiz to see your scores here!<p>
+{% endif %}
     <br>
+    <h1 style="text-align:center;margin-top:10%;"> User Scoreboard </h1>
     <table class="table table-striped table-dark" style="width:80%; text-align:center; margin:0% 10%;">
+    
         <tr>
         <th>Rank</th>
         <th>Username</th> 
@@ -17,4 +27,57 @@
         </tr>
         {% endfor %} 
     </table>
+<script type="text/javascript">var myscores = '{{ curr_user_scores|tojson }}'; </script>
+<script type="text/javascript">var myattempts = '{{ curr_user_attempts|tojson }}'; </script>
+<script>
+scores = []
+attempts = []
+score_colors = ["#04aa6d","#ffa500","#c7c7c7"]
+colors = []
+
+for (char = 0; char < myscores.length; char++) {
+    if (!isNaN(parseInt(myscores[char]))){
+        scores.push(parseInt(myscores[char]))
+        attempts.push(parseInt(myattempts[char]))
+        if (parseInt(myscores[char]) == 3) colors.push(score_colors[0])
+        else if (parseInt(myscores[char]) == 2) colors.push(score_colors[1])
+        else colors.push(score_colors[2])
+    } 
+}
+
+new Chart("score-bar-graph", {
+type: "bar",
+data: {
+    labels: attempts,
+    datasets: [{
+    backgroundColor: colors,
+    data: scores
+    }]
+},
+options: {
+    title: {
+    display: true,
+    text: "Your Quiz Scores"
+    },
+    legend: { display: false },
+    tooltips: { enabled: false },
+    scales: {
+        xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Attempt Number'
+                }
+            }],
+        yAxes: [{
+                display: true,
+                ticks: {
+                    max: 3
+                }
+            }]
+        }
+},
+});
+</script>
+</script>
 {% endblock %}

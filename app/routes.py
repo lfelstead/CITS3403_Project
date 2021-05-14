@@ -90,7 +90,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=bcrypt.generate_password_hash(form.password.data).decode('utf-8'))
         db.session.add(user)
         db.session.commit()
-        flash("Account successfully created! Please login with your creditials", "success")
+        flash("Account successfully created! Please login with your creditials.", "success")
         return redirect(url_for('login'))
     return render_template('register.html', title= 'Registration', form=form)
 
@@ -164,9 +164,17 @@ def users():
 @app.route("/scoreboard")
 @login_required
 def scoreboard():
-    # gets all of the current users attempts
+    # get individual quiz attempts
     data = Scores.query.filter_by(userid=current_user.id).all()
+    attempt_score = {}
 
+    for quiz in data:
+        if quiz.attempt not in attempt_score:
+            attempt_score[quiz.attempt] = int(quiz.correct)
+        else:
+            attempt_score[quiz.attempt] += int(quiz.correct)
+
+    # get every users attempts
     # sums up the total amount of correct answers for each user
     all_users = User.query.all()
     scores = []
@@ -183,4 +191,4 @@ def scoreboard():
         score.append(counter)
         counter += 1
 
-    return render_template('scoreboard.html', current_user=data, scores=scores)
+    return render_template('scoreboard.html', curr_user_scores=list(attempt_score.values()), curr_user_attempts=list(attempt_score.keys()), scores=scores)
