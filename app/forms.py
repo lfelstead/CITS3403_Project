@@ -28,16 +28,18 @@ class RegistrationForm(FlaskForm):
     
     def validate_username(self, username):
         user = User.query.filter(func.lower(User.username) == func.lower(username.data)).first()
-
         if user:
-            flash('That username is taken. Please choose a different one', 'danger')
+            flash('That username is taken. Please choose a different one.', 'danger')
+            raise ValidationError()
         elif not bool(re.match("^[A-Za-z0-9_]*$", username.data)):
-            flash('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one', 'danger')
+            flash('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one.', 'danger')
+            raise ValidationError()
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            flash('That email is taken. Please choose a different one', 'danger')
+            flash('That email is taken. Please choose a different one.', 'danger')
+            raise ValidationError()
     
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(),Email()])
@@ -61,8 +63,10 @@ class EditProfileForm(FlaskForm):
             
             if user is not None:
                 flash('That username is taken. Please choose a different one', 'danger')
+                raise ValidationError()
             elif not bool(re.match("^[A-Za-z0-9_]*$", username.data)):
                 flash('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one', 'danger')
+                raise ValidationError()
 
 
 def Make_Questions():
