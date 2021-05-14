@@ -39,7 +39,8 @@
           <li><img src="{{url_for('static', filename='account.png')}}" style="height:25px; margin-right: 5%;" alt=""><span>{{current_user.username}}</span></li>
       </a>
       {% else %}
-      <a class ="header-item" href="{{url_for('login')}}" style="padding-right: 25px; grid-column: 6 / 8;">
+      <a></a>
+      <a class ="header-item" href="{{url_for('login')}}" style="padding-right: 25px;">
         <li href="{{url_for('login')}}">Login</li>
       </a>
       {% endif %}
