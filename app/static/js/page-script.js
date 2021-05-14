@@ -89,16 +89,16 @@ function submitPractice(quizNumber, input, answer) {
  */
 function loadProgressBar(localOveride=null) {
   // 
-  $("#main-header ul a.finished").removeClass("finished");
+  $(".header-dropdown-content a.finished").removeClass("finished");
 
   let progress = 0;
   if(localStorage.getItem('progress') !== null && localOveride === null) {
     let progressArray = JSON.parse(localStorage.getItem('progress'));
-    let $headerItems = $("#main-header ul a");
+    let $headerItems = $(".header-dropdown-content a");
     for(var i = 0; i < NUMBER_OF_TOPICS; i++) {
       if(progressArray[i]) {
         progress++;
-        $($headerItems[i + 1]).addClass("finished");
+        $($headerItems[i]).addClass("finished");
       }
     }
   }

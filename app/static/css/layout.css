@@ -2,9 +2,13 @@
 :root {
   --header-default: #191a1a;
   --header-hover: #2a2b2b;
-  --header-active: #191a1a;;
+  --header-active: #191a1a;
   --header-login: #191a1a;
   --header-height: 55px;
+
+  --header-topics: #f1f1f1;
+  --header-topics-hover: #ddd;
+  --header-topics-completed: #a3a3a3;
 
   --shading: #e4e4e4;
   --progress-bar: #191a1a;
@@ -76,7 +80,7 @@ body {
 .header-dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f1f1f1;
+  background-color: var(--header-topics);
   text-align: center;
   min-width: 15%;
 }
@@ -89,7 +93,7 @@ body {
 }
 
 .header-dropdown-content a:hover {
-  background-color: #ddd;
+  background-color: var(--header-topics-hover);
 }
 
 .header-dropdown:hover .header-dropdown-content {
@@ -100,10 +104,9 @@ body {
   background-color: var(--header-hover);
 }
 
-
 /* Topics finished */
-.header-item.finished {
-  text-decoration: underline;
+.header-dropdown-content a.finished {
+  background-color: var(--header-topics-completed);
 }
 
 .header-item > li, a {
