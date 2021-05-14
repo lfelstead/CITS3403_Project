@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
+from flask import flash
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
@@ -29,14 +30,14 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter(func.lower(User.username) == func.lower(username.data)).first()
 
         if user:
-            raise ValidationError('That username is taken. Please choose a different one')
+            flash('That username is taken. Please choose a different one', 'danger')
         elif not bool(re.match("^[A-Za-z0-9_]*$", username.data)):
-            raise ValidationError('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one')
+            flash('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one', 'danger')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError('That email is taken. Please choose a different one')
+            flash('That email is taken. Please choose a different one', 'danger')
     
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(),Email()])
@@ -59,9 +60,9 @@ class EditProfileForm(FlaskForm):
             user = User.query.filter(func.lower(User.username) == func.lower(self.username.data)).first()
             
             if user is not None:
-                raise ValidationError('That username is taken. Please choose a different one')
+                flash('That username is taken. Please choose a different one', 'danger')
             elif not bool(re.match("^[A-Za-z0-9_]*$", username.data)):
-                raise ValidationError('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one')
+                flash('Usernames can only consist of letters, numbers and/or underscores. Please choose a different one', 'danger')
 
 
 def Make_Questions():

@@ -49,6 +49,9 @@
       {% endif %}
     </ul>
   </header>
+  {% for category, message in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
+  {% endfor %}
   <div id="body-wrapper">
     <main id="content">
       {% block content %}{% endblock %}

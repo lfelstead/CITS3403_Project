@@ -11,7 +11,7 @@ from sqlalchemy import func
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("topics/home.html")
+    return render_template("home.html")
 
 @app.route("/one")
 def one():
@@ -62,6 +62,7 @@ def quiz():
   
             return redirect(url_for('results'))
         return render_template("quiz.html", data=data, form=form)
+    flash('Please login to begin the quiz', 'info')
     return redirect(url_for('login'))
 
 @app.route("/results", methods = ['GET','POST'])
@@ -89,7 +90,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=bcrypt.generate_password_hash(form.password.data).decode('utf-8'))
         db.session.add(user)
         db.session.commit()
-        flash(f'Account Created For {form.username.data}.', 'success')
+        flash("Account successfully created! Please login with your creditials", "success")
         return redirect(url_for('login'))
     return render_template('register.html', title= 'Registration', form=form)
 
@@ -98,12 +99,15 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user,remember=form.remember.data)
-            next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+    if form.is_submitted():
+        if form.validate_on_submit():
+            user = User.query.filter_by(email=form.email.data).first()
+            if user and bcrypt.check_password_hash(user.password, form.password.data):
+                login_user(user,remember=form.remember.data)
+                next_page = request.args.get('next')
+                return redirect(next_page) if next_page else redirect(url_for('home'))
+        else:
+            flash("Sorry, we don't have an account linked to that username and password. Please check your spelling or create an account.", "danger")
         
     return render_template('login.html', title= 'Login', form=form)
 

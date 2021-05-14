@@ -4,9 +4,8 @@
     <h1>Sign In</h1>
     <form action="" method="POST">
         {{ form.hidden_tag() }}
-        <fieldset>
-            <legend> Sign In </legend>
-            <div>
+        <fieldset class="form-group border-bottom mb-4">
+            <div class="form-group">
                 {{ form.email.label() }}
                 {% if form.email.errors %}
                     {{ form.email() }}
@@ -19,13 +18,13 @@
                     {{ form.email() }}
                 {%endif%}
             </div>
-            <div>
+            <div class="form-group">
                 {{ form.password.label() }}
                 {% if form.password.errors %}
                     {{ form.password() }}
                     <div>
                         {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
+                            <span>{{error}}</span>
                         {%endfor%}
                     </div>
                 {% else %}

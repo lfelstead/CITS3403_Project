@@ -5,8 +5,7 @@
         <form method = "POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class = "form-group">
-                <legend class = "border-bottom mb-4"> Join Today </legend>
-                <div class = "form-group">
+                <div class = "form-group border-bottom mb-4">
                     {{ form.username.label(class="form-control-label") }}
                     {% if form.username.errors %}
                         {{ form.username(class="form-control form-control-lg is-invalid") }}
