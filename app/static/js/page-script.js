@@ -12,7 +12,6 @@ $(document).ready(() => {
   // Load on page specific scripts
   switch(window.location.pathname) {
     case "/home":
-      $("#debug").text("test");
       break;
     case "/one":
       quizNumber = 0;
@@ -41,30 +40,39 @@ $(document).ready(() => {
   $input.attr("oninvalid", "this.setCustomValidity('Answer must be in an integer or a decimal layout.')");
 });
 
+/**
+ * Initialises the practice question at the end of each topic page
+ * @param quizNumber : [0:3] Which quiz topic is it 
+ */
 function topicQuizInit(quizNumber) {
   // Show the quiz container
   $(".practice-quiz-container").css("display", "inline-block");
   let $button = $("#show-quiz");
   $button.click(() => {
-    // FOR DEBUGGING:
-    // $("#debug").text(quizNumber);
+
     // AJAX Request for question
     $.getJSON("../../static/json/questions.json", success = (data) => {
       let questionObj = data.practice[quizNumber];
-      // FOR DEBUGGING: 
-      // console.log(data)
-      let htmlString = "<p class='quiz-question'>" + questionObj.question + "<p>";
+
+      let htmlString = "<p class='quiz-question'>" + questionObj.question + "</p>";
       htmlString += "<p class='quiz-values'>Values: " + questionObj["default-values"] + "</p>";
+      // Diagram
+      htmlString += "<img class='quiz-diagram' src='" + questionObj.diagram + "'>";
 
       
       $button.after(htmlString);
       $button.hide("fast", "linear");
+
       $(".practice-quiz-container form").show();
+      $(".units").html(questionObj.units); // Show units
+
+      
       $(".practice-form").submit((event) => {
         let input = $("#practice-answer").val();
         submitPractice(quizNumber, input, questionObj.answer);
         event.preventDefault();
       });
+      $(".practice-quiz-container").css("display", "grid"); // MAKES GRID
     }).fail(() => {alert("An error has occured");});
   });
 }

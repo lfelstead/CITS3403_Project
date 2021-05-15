@@ -59,13 +59,6 @@ body {
   background-color: var(--header-hover);
 }
 
-/* Currently active link */
-/* NOT IN USE */
-/* .header-item.active {
-  background-color: var(--header-active);
-  font-weight: bold;
-} */
-
 .header-logo {
   margin: auto;
   width: 50%;
@@ -181,8 +174,15 @@ body {
   padding: 10px 15px;
   border-radius: 8px;
   background-color: var(--shading);
-  display: none;
+  max-width: 60%;
   overflow: hidden;
+
+  display: none;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: 
+    "question     diagram"
+    "values       diagram"
+    "input        input"  ;
 }
 
 /* Button for quizzes */
@@ -201,14 +201,35 @@ body {
 }
 
 .quiz-question {
-  color: red;
+  color: black;
+  grid-area: question;
+}
+
+.quiz-diagram {
+  grid-area: diagram;
+
+  padding: 25px;
 }
 
 .quiz-values {
   font-family: Georgia, 'Times New Roman', Times, serif;
+  grid-area: values;
 }
 
-.practice-quiz-container form{
+.practice-form {
+  grid-area: input;
+}
+
+.units {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding-right: 15px;
+}
+
+.practice-quiz-container form {
+  display: none;
+}
+
+.practice-feedback {
   display: none;
 }
 
