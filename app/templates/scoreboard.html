@@ -4,8 +4,6 @@
 
 <h1 style="text-align:center;margin-top:10%;">Your Previous Scores</h1>
 {% if curr_user_scores != [] %}
-{{curr_user_scores}}
-{{curr_user_attempts}}
     <div><canvas id="score-bar-graph" style="width:100%;max-width:800px;margin:0% 20%;"></canvas></div>
 {% else %}
 <p style="text-align:center;"> You do not have any previous attempts. Take the quiz to see your scores here!<p>
@@ -30,28 +28,26 @@
 <script type="text/javascript">var myscores = '{{ curr_user_scores|tojson }}'; </script>
 <script type="text/javascript">var myattempts = '{{ curr_user_attempts|tojson }}'; </script>
 <script>
-scores = []
-attempts = []
+// convert string to number array
+myscores = myscores.replace("[","").replace("]","").split(",").map(x=>+x)
+myattempts = myattempts.replace("[","").replace("]","").split(",").map(x=>+x)
+
+// get color for each column depending on score
 score_colors = ["#04aa6d","#ffa500","#c7c7c7"]
 colors = []
-
-for (char = 0; char < myscores.length; char++) {
-    if (!isNaN(parseInt(myscores[char]))){
-        scores.push(parseInt(myscores[char]))
-        attempts.push(parseInt(myattempts[char]))
-        if (parseInt(myscores[char]) == 3) colors.push(score_colors[0])
-        else if (parseInt(myscores[char]) == 2) colors.push(score_colors[1])
-        else colors.push(score_colors[2])
-    } 
+for (index = 0; index < myscores.length; index++) {
+    if (myscores[index] == 3){colors.push(score_colors[0])}
+    else if (myscores[index] == 2){colors.push(score_colors[1])}
+    else {colors.push(score_colors[2])}
 }
 
 new Chart("score-bar-graph", {
 type: "bar",
 data: {
-    labels: attempts,
+    labels: myattempts,
     datasets: [{
     backgroundColor: colors,
-    data: scores
+    data: myscores
     }]
 },
 options: {
