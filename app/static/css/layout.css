@@ -208,7 +208,7 @@ body {
 .quiz-diagram {
   grid-area: diagram;
 
-  padding: 25px;
+  margin-left: 25px;
 }
 
 .quiz-values {
@@ -222,7 +222,7 @@ body {
 
 .units {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  padding-right: 15px;
+  margin-right: 15px;
 }
 
 .practice-quiz-container form {
