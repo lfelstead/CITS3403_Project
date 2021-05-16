@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from flask import flash
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, TextAreaField, RadioField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, FloatField, TextAreaField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 from sqlalchemy import func
@@ -94,10 +94,10 @@ class QuizForm(FlaskForm):
     answer1 = RadioField('answer1', choices=[('A','A'),('B','B'), ('C','C'),('D','D')])
     answer2 = RadioField('answer2', choices=[('Yes','Yes'),('No','No')])
     answer3 = RadioField('answer3', choices=[('Yes','Yes'),('No','No')])
-    answer4 = IntegerField('answer4')
-    answer5 = IntegerField('answer5')
-    answer6 = IntegerField('answer6')
-    answer7 = IntegerField('answer7')
+    answer4 = FloatField('answer4')
+    answer5 = FloatField('answer5')
+    answer6 = FloatField('answer6')
+    answer7 = FloatField('answer7')
 
     submit = SubmitField('Check')
 

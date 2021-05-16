@@ -36,8 +36,8 @@ myattempts = myattempts.replace("[","").replace("]","").split(",").map(x=>+x)
 score_colors = ["#04aa6d","#ffa500","#c7c7c7"]
 colors = []
 for (index = 0; index < myscores.length; index++) {
-    if (myscores[index] == 3){colors.push(score_colors[0])}
-    else if (myscores[index] == 2){colors.push(score_colors[1])}
+    if (myscores[index] >= 6){colors.push(score_colors[0])}
+    else if (myscores[index] >= 4){colors.push(score_colors[1])}
     else {colors.push(score_colors[2])}
 }
 
@@ -68,7 +68,7 @@ options: {
         yAxes: [{
                 display: true,
                 ticks: {
-                    max: 3
+                    max: 7
                 }
             }]
         }

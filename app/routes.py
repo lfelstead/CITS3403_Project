@@ -69,17 +69,19 @@ def quiz():
 def results():
     results = Get_Results()
     correct = sum(results)
-    if correct < 2:
-        msg = "Your score is {0}/3 but that ok. Review the different topics and reattempt the quiz.".format(correct)
-    elif correct == 2:
-        msg = "Your score is {0}/3. Well done! Review the different topics and reattempt the quiz.".format(correct)
-    elif correct == 3:
-        msg = "Your score is {0}/3. Wow a perfect score! Still, it wouldn't hurt to review the different topics and reattempt the quiz.".format(correct)
-    questions = list(Get_Questions())
+    if correct < 5:
+        msg = "Your score is {0}/7 but that ok. Review the different topics and reattempt the quiz.".format(correct)
+    elif correct == 5:
+        msg = "Your score is {0}/7. Well done! Review the different topics and reattempt the quiz.".format(correct)
+    elif correct == 7:
+        msg = "Your score is {0}/7. Wow a perfect score! Still, it wouldn't hurt to review the different topics and reattempt the quiz.".format(correct)
+    questions, _ = Get_Questions()
     answers = list(Get_Answers())
+    print(list(questions))
+    print(answers)
 
     Make_Questions()
-    return render_template("results.html", data=zip(questions, answers), msg=msg, correct = correct, incorrect=len(results)-sum(results))
+    return render_template("results.html", data=list(zip(list(questions), answers)), msg=msg, correct = correct, incorrect=len(results)-sum(results))
 
 @app.route("/register", methods = ['GET','POST'])
 def register():
