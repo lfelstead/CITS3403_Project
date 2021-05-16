@@ -100,6 +100,7 @@ def Get_Questions():
     return QUESTION_DATA
 
 def Get_Answers():
+    print(ANSWERS_DATA)
     return ANSWERS_DATA
 
 def Get_Results():
@@ -117,11 +118,17 @@ class QuizForm(FlaskForm):
     def validate_answer1(self, answer1):
         if answer1.data == ANSWERS_DATA[0]:
             CORRECT_ANSWERS[0] = True
+        else: 
+            CORRECT_ANSWERS[0] = False
 
     def validate_answer2(self, answer2):
         if answer2.data == ANSWERS_DATA[1]:
             CORRECT_ANSWERS[1] = True
+        else: 
+            CORRECT_ANSWERS[1] = False
     
     def validate_answer3(self, answer3):
         if answer3.data == ANSWERS_DATA[2]:
             CORRECT_ANSWERS[2] = True
+        else: 
+            CORRECT_ANSWERS[2] = False

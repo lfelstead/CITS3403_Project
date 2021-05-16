@@ -90,7 +90,7 @@ def register():
         user = User(username=form.username.data, email=form.email.data, password=bcrypt.generate_password_hash(form.password.data).decode('utf-8'))
         db.session.add(user)
         db.session.commit()
-        flash("Account successfully created! Please login with your creditials.", "success")
+        flash("Account successfully created!", "success")
         return redirect(url_for('login'))
     return render_template('register.html', title= 'Registration', form=form)
 
