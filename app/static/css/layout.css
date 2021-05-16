@@ -15,6 +15,10 @@
 
   --button-primary-color: #191a1a;
   --button-secondary-color: #2a2b2b;
+
+  --footer-default: #191a1a;
+  --footer-content: #f1f1f1;
+  --footer-hover: #2a2b2b;
 }
 
 body {
@@ -52,6 +56,14 @@ body {
   text-decoration: none;
   font-family: Verdana, Helvetica, sans-serif;
   font-size: 15px;
+}
+
+.header-item > li,
+.header-item a {
+  text-align: center;
+  color: white;
+  vertical-align: middle;
+  line-height: var(--header-height);
 }
 
 /* Hovering link */
@@ -103,13 +115,6 @@ body {
   background-color: var(--header-topics-completed);
 }
 
-.header-item > li, a {
-  text-align: center;
-  color: white;
-  vertical-align: middle;
-  line-height: var(--header-height);
-}
-
 /* bottom used to center icon */
 .header-item img {
   padding-right: 15px;
@@ -133,16 +138,15 @@ body {
 #body-wrapper {
   display: grid;
   grid-template-columns: 1fr 10px;
-  grid-template-areas: 
-    "body    sidebar";
+  grid-template-areas: "body    sidebar";
 }
-  
+
 /* Main content */
 #content {
   grid-area: body;
   padding: 0px 2%;
 }
-  
+
 /* Side bar */
 /* BANDAID FIX APPLIED: STICKY POSITIONED HEADERSIZE DOWN*/
 /* Recommended: Remove sidebar from grid */
@@ -163,7 +167,7 @@ body {
 }
 
 .main-text {
-  margin-right: 25%;
+  margin-right: 15%;
   margin-left: 15%;
   text-align: center;
   font-size: 20px;
@@ -179,7 +183,7 @@ body {
 
   display: none;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-areas: 
+  grid-template-areas:
     "question     diagram"
     "values       diagram"
     "input        input"  
@@ -191,7 +195,10 @@ body {
   padding: 8px 10px;
   border-radius: 8px;
   display: inline-block;
-  background: linear-gradient(var(--button-primary-color), var(--button-secondary-color));
+  background: linear-gradient(
+    var(--button-primary-color),
+    var(--button-secondary-color)
+  );
   background-color: var(--button-primary-color);
 
   color: #ffffff;
@@ -213,7 +220,7 @@ body {
 }
 
 .quiz-values {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   grid-area: values;
 }
 
@@ -236,20 +243,52 @@ body {
   margin-top: 15px;
 }
 
-footer{
-  background-color: grey;
+#footer {
+  background-color: var(--footer-default);
   width: 100%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 2fr 5fr 2fr;
 }
 
-.results-question-box{
+.names {
+  margin: 8px 0px 5px 0px;
+  color: var(--footer-content);
+  text-align: center;
+}
+
+.reset-button {
+  text-align: center;
+}
+
+.reset-button a:link {
+  font-size: 25px;
+  text-decoration: none;
+  color: var(--footer-content);
+}
+.reset-button a:hover {
+  text-decoration: none;
+  color: var(--footer-hover);
+}
+
+.reference-link a:link,
+.reference-link a:visited {
+  text-decoration: none;
+  color: var(--footer-content);
+}
+
+.reference-link a:hover {
+  color: var(--footer-hover);
+}
+
+.results-question-box {
   margin: 20px;
   padding: 10px;
 }
 
-
 /* Responsive for smaller screen sizes */
 @media only screen and (max-width: 600px) {
-  
   .header-item {
     font-size: 8px;
   }
