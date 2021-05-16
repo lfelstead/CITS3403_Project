@@ -1,6 +1,39 @@
 {% extends "layout.html" %} {% block content %}
-<div class="main-text">
+<div class="main-text" style="margin: 40px 150px">
   <h1>All together now</h1>
-  <p></p>
+  <p>
+    Putting everything you have learned up until together, larger circuits can
+    be solved if broken up into a set of smaller problems.
+    <br />
+    <br />
+    For a problem that has resistors in both parallel and series it helps to
+    identify all the parallel groups and substitute them out for a single
+    resistor first.
+    <br />
+    <br />
+    This can be done for this circuit:
+    <br />
+  </p>
+  <img
+    src="{{url_for('static', filename='img/Combined 1.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <p>
+    <br />
+    R<sub>T</sub> = <sup>100Ω *200Ω</sup>&frasl;<sub>100Ω + 200Ω</sub> = 66.67Ω
+    <br />
+    <br />
+    To simplify it to this much simpler circuit:
+    <br />
+  </p>
+  <img
+    src="{{url_for('static', filename='img/Combined 2.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <p>
+    <br />
+    Using what you have learnt from the series topic, a circuit like this should
+    be easy!
+  </p>
 </div>
 {% endblock %}

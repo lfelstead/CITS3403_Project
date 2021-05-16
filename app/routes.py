@@ -11,7 +11,7 @@ from sqlalchemy import func
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template("home.html")
+    return render_template("topics/home.html")
 
 @app.route("/one")
 def one():
