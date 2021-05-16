@@ -1,7 +1,7 @@
 from sqlalchemy.sql.expression import desc
 from app import app, db, bcrypt
 from flask import Flask, render_template, flash, redirect, url_for, request
-from app.forms import EditProfileForm, LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results, Make_Questions, Get_Answers
+from app.forms import EditProfileForm, LoginForm, RegistrationForm, QuizForm, Make_Questions, Get_Questions, Get_Results, Get_Answers
 from app.models import User, Scores
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
@@ -34,7 +34,7 @@ def four():
 @app.route("/quiz", methods = ['GET','POST'])
 def quiz():
     if current_user.is_authenticated:
-        data = Get_Questions()
+        data, images = Get_Questions()
 
         form = QuizForm()
         if form.validate_on_submit():
@@ -61,7 +61,7 @@ def quiz():
             db.session.commit()
   
             return redirect(url_for('results'))
-        return render_template("quiz.html", data=data, form=form)
+        return render_template("quiz.html", data=data, images=images, form=form)
     flash('Please login to begin the quiz', 'info')
     return redirect(url_for('login'))
 
