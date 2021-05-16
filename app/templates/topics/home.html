@@ -1,8 +1,34 @@
-{% extends "layout.html" %}
-{% block content %}
-  <!--RENAME ALL FILES TO WHATEVER YOU NEED-->
-  <!--MAKE SURE TO RENAME ANY CORROSPONDING LINKS IN layout.html 
-    AND routes.html-->
-  <h1>TOPIC ONE</h1>
-  <p> content </p>
-{% endblock %}
+{% extends "layout.html" %} {% block content %}
+<div class="main-text" style="margin: 40px 150px">
+  <h1>Circuits? Resistors?</h1>
+  <p>
+    Hi there!
+    <br />
+    Our website is here to help you take your first steps in understanding
+    electrical circuits. During the short course you will learn four different
+    topics of content, and then we will assess your knowledge at the end with
+    our quiz. Do not get overwhelmed though, we have a question at the end of
+    each topic to make sure you are progressing nicely. To get started, try
+    visiting topic one.
+    <br />
+    <br />
+    Our final quiz will give you some feedback, and track your attempts against
+    everyone else, but to do this we require that you log in.
+    <br />
+    <br />
+    With that out of the way, grab some paper, a pen, and a calculator and head
+    over to topic one where your first lesson will begin.
+    <br />
+    <br />
+    <br />
+  </p>
+  <img
+    src="{{url_for('static', filename='img/Logo-Inverted.png')}}"
+    alt="Image Didnt load :c"
+  />
+  <p>
+    <br />
+    <br />
+  </p>
+  {% endblock %}
+</div>

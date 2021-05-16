@@ -1,35 +1,36 @@
 {
   "practice" : [
     {
-      "question" : "A single resistor is connected in a circuit containing only a single constant voltage source. Using Ohm's Law and the given values, calculate the resistance of the resistor.",
-      "diagram" : "/static/img/Series Diagram.png",
-      "default-values" : ["1000V", "200A"],
-      "units" : "&#x3A9",
-      "answer" : "500"
-    },
-    {
-      "question" : "Three resistors labelled R1, R2 and R3 are connected in series with a constant voltage source. Calculate the current flowing through all three resistors.",
-      "diagram" : "/static/img/Series Diagram.png",
-      "default-values" : ["R1: 250&#x3A9 ", "R2: 150&#x3A9 ", "R3: 50&#x3A9 ", "900V"],
+      "question" : "A single resistor is connected in a circuit containing only a single constant voltage source. Using Ohm's Law and the given values, calculate the current going through the resistor.",
+      "diagram" : "/static/img/Ohms Diagram.png",
+      "default-values" : ["V1: 1000V ", " R1: 200&#x3A9"],
       "units" : "A",
-      "answer" : "answer_placeholder"
+      "answer" : 500,
+      "feedback" : ["<p>Remember, Ohm's Law describes the relation between voltage, current and resistance as V = IR.</p>"]
     },
     {
-      "question" : "Resistor A is connected in parallel with resistor B as shown.",
+      "question" : "Three resistors labelled R1, R2 and R3 are connected in series. Calculate the total resistance given the following values.",
       "diagram" : "/static/img/Series Diagram.png",
-      "default-values" : "",
-      "answer" : "answer_placeholder"
+      "default-values" : ["R1: 250&#x3A9 ", " R2: 150&#x3A9 ", " R3: 50&#x3A9 "],
+      "units" : "&#x3A9",
+      "answer" : 450,
+      "feedback" : ["<p>The total resistance in a series of resistors in a series can simply be summed up together.</p>"]
     },
     {
-      "question" : "Placeholder.",
-      "diagram" : "/static/img/Series Diagram.png",
-      "default-values" : "",
-      "answer" : "answer_placeholder"
-    }
-  ],
-  "quiz" : [
+      "question" : "Resistor R1 is connected in parallel with resistor R2. Calculate the total resistance given the following values.",
+      "diagram" : "/static/img/Parallel Diagram.png",
+      "default-values" : ["R1: 50&#x3A9 ", " R2: 150&#x3A9 "],
+      "units" : "&#x3A9",
+      "answer" : 37.5,
+      "feedback" : ["<p>Remember that resistance in parallel resistors can be calculated by the following formula:</p><p><sup>1</sup>&frasl;<sub>R<sub>T</sub></sub></sub> = <sup>1</sup>&frasl;<sub>R<sub>1</sub></sub></sub> + <sup>1</sup>&frasl;<sub>R<sub>2</sub></sub></sub> + <sup>1</sup>&frasl;<sub>R<sub>3</sub></sub></sub> + ...</p>"]
+    },
     {
-      "question" : "Resistor A is connected in series with resistor B as shown."
+      "question" : "Resistor R1 is connected in parallel with resistor R2 which is then connected in series with resistor R3 (refer to the diagram on the right). Calculate the total resistance given the following values.",
+      "diagram" : "/static/img/Mixed Diagram.png",
+      "default-values" : ["R1: 200&#x3A9 ", " R2: 300&#x3A9 ", " R3: 80&#x3A9"],
+      "units" : "&#x3A9",
+      "answer" : 200,
+      "feedback" : ["<p>Hint: You can replace the pair of parallel resistors with a single resistor to simplify the circuit. You will of course still need to calculate the resistance of that resistor.</p>"]
     }
   ]
 }

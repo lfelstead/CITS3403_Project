@@ -69,7 +69,7 @@ function topicQuizInit(quizNumber) {
       
       $(".practice-form").submit((event) => {
         let input = $("#practice-answer").val();
-        submitPractice(quizNumber, input, questionObj.answer);
+        submitPractice(quizNumber, input, questionObj.answer, questionObj.feedback);
         event.preventDefault();
       });
       $(".practice-quiz-container").css("display", "grid"); // MAKES GRID
@@ -77,15 +77,39 @@ function topicQuizInit(quizNumber) {
   });
 }
 
-function submitPractice(quizNumber, input, answer) {
+function submitPractice(quizNumber, input, answer, feedback) {
   // Initialise localStorage entry for progress
   if(localStorage.getItem('progress') === null) {
     let array = new Array(NUMBER_OF_TOPICS).fill(false);
     localStorage.setItem('progress', JSON.stringify(array));
   }
-  let progress = JSON.parse(localStorage.getItem('progress'));
-  progress[quizNumber] = true;
-  localStorage.setItem('progress', JSON.stringify(progress));
+  // Feedback
+  input = Number(input).toFixed(2);
+  answer = answer.toFixed(2);
+  let htmlString = "<p>";
+  if(input == answer) {
+    if (quizNumber != NUMBER_OF_TOPICS - 1) {
+      htmlString += "You got it correct! Time to move to a different topic!</p>";
+    } else {
+      htmlString += "You got it correct! If you have finished all the topics, try yourself at the quiz! </p>";
+    }
+    // Update progress bar
+    let progress = JSON.parse(localStorage.getItem('progress'));
+    progress[quizNumber] = true;
+    localStorage.setItem('progress', JSON.stringify(progress));
+    // 
+    $("#practice-feedback").html(htmlString);
+    $(".practice-quiz-container").css("border-color", "green");
+    $(".practice-quiz-container").css("border-style", "solid");
+  } else {
+    htmlString += "Not quite.</p>";
+    feedback.forEach(item => htmlString += item);
+    $("#practice-feedback").html(htmlString);
+    $(".practice-quiz-container").css("border-color", "red");
+    $(".practice-quiz-container").css("border-style", "solid");
+  }
+
+  $("#practice-feedback").show();
   loadProgressBar();
 }
 
