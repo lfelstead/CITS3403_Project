@@ -37,14 +37,25 @@ def get_Questions():
         6:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, R4 = _ Ω. and R5 = _ Ω. Round to two decimal places."
     }
 
+    # used on results page to provide feedback and teaching to the user
+    hints = {
+        0:"This question was answered incorrectly. If you need some help, refer to topic one: Resistors.",
+        1:"This question was answered incorrectly. If you need some help, refer to topic two: Series.",
+        2:"This question was answered incorrectly. If you need some help, refer to topic three: Parallel.",
+        3:"This question was answered incorrectly. Did you use the formula Rt = R1 + R2 + R3? If you need some help, refer to topic two: Series.",
+        4:"This question was answered incorrectly. Did you use the formula Rt = (R1 * R2 * R3) / (R1 * R2 + R1 * R3 + R2 * R3)? If you need some help, refer to topic three: Parallel.",
+        5:"This question was answered incorrectly. Did you use the formula Rt = R1 + ((R2 * R3) / (R2 + R3)) + R4? If you need some help, refer to topic four: All Together.",
+        6:"This question was answered incorrectly. Did you use the formula Rt = ((R1 * R2) / (R1 + R2)) + R3 + ((R4 * R5) / (R4 + R5))? If you need some help, refer to topic four: All Together."
+    }
+
     images = {
-        0:["Quiz0.png"],
-        1:["Quiz1.png"],
-        2:["Quiz1.png"],
-        3:["Quiz2.png"],
-        4:["Quiz3.png"],
-        5:["Quiz4.png"],
-        6:["Quiz5.png"]
+        0:["static/img/Quiz0.png"],
+        1:["static/img/Quiz1.png"],
+        2:["static/img/Quiz1.png"],
+        3:["static/img/Quiz2.png"],
+        4:["static/img/Quiz3.png"],
+        5:["static/img/Quiz4.png"],
+        6:["static/img/Quiz5.png"]
     }
 
     answers = {
@@ -54,6 +65,6 @@ def get_Questions():
     }
 
     questions, answers = randomiseQuestions(questions, answers)
-    return (list(questions.values()), list(images.values()), list(answers.values()))
+    return (list(questions.values()), list(images.values()), list(answers.values()), list(hints.values()))
 
 

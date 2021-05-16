@@ -13,6 +13,7 @@ import re
 QUESTION_DATA = []
 ANSWERS_DATA = []
 IMAGES_DATA = []
+HINTS_DATA = []
 CORRECT_ANSWERS = [False, False, False, False, False, False, False]
 
 class RegistrationForm(FlaskForm):
@@ -70,13 +71,16 @@ def Make_Questions():
     # reset from previous attempts
     QUESTION_DATA.clear()
     ANSWERS_DATA.clear()
+    HINTS_DATA.clear()
     CORRECT_ANSWERS = [False, False, False]
 
-    quest, img, ans = get_Questions()
+    quest, img, ans, hints = get_Questions()
     for index in range(len(quest)):
         QUESTION_DATA.append(quest[index])
         IMAGES_DATA.append(img[index])
         ANSWERS_DATA.append(ans[index])
+        HINTS_DATA.append(hints[index])
+
 
 # used by routes.py for quiz and results page
 def Get_Questions():
@@ -86,7 +90,7 @@ def Get_Answers():
     return ANSWERS_DATA
 
 def Get_Results():
-    return CORRECT_ANSWERS
+    return CORRECT_ANSWERS, HINTS_DATA
 
 Make_Questions()
 
