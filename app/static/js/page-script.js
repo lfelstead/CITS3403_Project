@@ -6,13 +6,12 @@ $(document).ready(() => {
   loadProgressBar();
 
   // Stops saving requests to cache
-  // Can/Shoul be removed once json files are finalised
+  // Can/Should be removed once json files are finalised
   $.ajaxSetup({cache : false});
 
   // Load on page specific scripts
   switch(window.location.pathname) {
     case "/home":
-      $("#debug").text("test");
       break;
     case "/one":
       quizNumber = 0;
@@ -30,7 +29,6 @@ $(document).ready(() => {
       break;
     default:
   }
-  setHeader();
   // Topic specific elements
   if(typeof quizNumber !== 'undefined') {
     topicQuizInit(quizNumber);
@@ -42,30 +40,39 @@ $(document).ready(() => {
   $input.attr("oninvalid", "this.setCustomValidity('Answer must be in an integer or a decimal layout.')");
 });
 
+/**
+ * Initialises the practice question at the end of each topic page
+ * @param quizNumber : [0:3] Which quiz topic is it 
+ */
 function topicQuizInit(quizNumber) {
   // Show the quiz container
   $(".practice-quiz-container").css("display", "inline-block");
   let $button = $("#show-quiz");
   $button.click(() => {
-    // FOR DEBUGGING:
-    // $("#debug").text(quizNumber);
+
     // AJAX Request for question
     $.getJSON("../../static/json/questions.json", success = (data) => {
       let questionObj = data.practice[quizNumber];
-      // FOR DEBUGGING: 
-      // console.log(data)
-      let htmlString = "<p class='quiz-question'>" + questionObj.question + "<p>";
+
+      let htmlString = "<p class='quiz-question'>" + questionObj.question + "</p>";
       htmlString += "<p class='quiz-values'>Values: " + questionObj["default-values"] + "</p>";
+      // Diagram
+      htmlString += "<img class='quiz-diagram' src='" + questionObj.diagram + "'>";
 
       
       $button.after(htmlString);
       $button.hide("fast", "linear");
+
       $(".practice-quiz-container form").show();
+      $(".units").html(questionObj.units); // Show units
+
+      
       $(".practice-form").submit((event) => {
         let input = $("#practice-answer").val();
         submitPractice(quizNumber, input, questionObj.answer);
         event.preventDefault();
       });
+      $(".practice-quiz-container").css("display", "grid"); // MAKES GRID
     }).fail(() => {alert("An error has occured");});
   });
 }
@@ -82,22 +89,6 @@ function submitPractice(quizNumber, input, answer) {
   loadProgressBar();
 }
 
-/**
- * Sets active class to header item corrosponding to current page     \
- * Does not apply to login/register buttons but login/register pages
- * should disable all active classes                                  \
- */
-function setHeader() {
-  // Remove active class from any element in header
-  $("#main-header ul a.active").removeClass("active");
-  
-  // Add active class to corrosponding header item
-  let $headerItems = $("#main-header ul a");
-  for(let i = 0; i < NUMBER_OF_HEADER_ITEMS; i++) {
-    if(window.location.pathname == $headerItems[i].pathname)
-      $($headerItems[i]).addClass("active");
-  }
-}
 
 /**
  * To use a progress value to (re)load the progress bar
@@ -106,16 +97,16 @@ function setHeader() {
  */
 function loadProgressBar(localOveride=null) {
   // 
-  $("#main-header ul a.finished").removeClass("finished");
+  $(".header-dropdown-content a.finished").removeClass("finished");
 
   let progress = 0;
   if(localStorage.getItem('progress') !== null && localOveride === null) {
     let progressArray = JSON.parse(localStorage.getItem('progress'));
-    let $headerItems = $("#main-header ul a");
+    let $headerItems = $(".header-dropdown-content a");
     for(var i = 0; i < NUMBER_OF_TOPICS; i++) {
       if(progressArray[i]) {
         progress++;
-        $($headerItems[i + 1]).addClass("finished");
+        $($headerItems[i]).addClass("finished");
       }
     }
   }

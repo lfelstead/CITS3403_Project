@@ -1,28 +1,35 @@
 {
   "practice" : [
     {
-      "question" : "Resistor A is connected in series with resistor B as shown.",
-      "diagram-locale" : "",
-      "default-values" : ["1000V", "200A", "400&#x3A9"],
+      "question" : "A single resistor is connected in a circuit containing only a single constant voltage source. Using Ohm's Law and the given values, calculate the resistance of the resistor.",
+      "diagram" : "/static/img/Series Diagram.png",
+      "default-values" : ["1000V", "200A"],
+      "units" : "&#x3A9",
+      "answer" : "500"
+    },
+    {
+      "question" : "Three resistors labelled R1, R2 and R3 are connected in series with a constant voltage source. Calculate the current flowing through all three resistors.",
+      "diagram" : "/static/img/Series Diagram.png",
+      "default-values" : ["R1: 250&#x3A9 ", "R2: 150&#x3A9 ", "R3: 50&#x3A9 ", "900V"],
+      "units" : "A",
       "answer" : "answer_placeholder"
     },
     {
       "question" : "Resistor A is connected in parallel with resistor B as shown.",
-      "diagram-locale" : "",
-      "default-values" : "",
-      "answer" : "answer_placeholder"
-    },
-    {
-      "question" : "Placeholder",
-      "diagram-locale" : "",
+      "diagram" : "/static/img/Series Diagram.png",
       "default-values" : "",
       "answer" : "answer_placeholder"
     },
     {
       "question" : "Placeholder.",
-      "diagram-locale" : "",
+      "diagram" : "/static/img/Series Diagram.png",
       "default-values" : "",
       "answer" : "answer_placeholder"
+    }
+  ],
+  "quiz" : [
+    {
+      "question" : "Resistor A is connected in series with resistor B as shown."
     }
   ]
 }

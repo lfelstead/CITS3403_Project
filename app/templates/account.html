@@ -10,4 +10,5 @@
     {% if user == current_user %}
         <p><a href="{{ url_for('edit_account') }}">Edit your profile</a></p>
     {% endif %}
+    <a href="{{url_for('logout')}}" style="color: black;">Logout</a>
 {% endblock %}

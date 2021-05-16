@@ -1,21 +1,26 @@
 /* Global Variables for Colors, etc. */
 :root {
-  --header-default: #04aa6d;
-  --header-hover: #38d445;
-  --header-active: #afe0b4;
-  --header-login: #c7c7c7;
-  --header-height: 45px;
+  --header-default: #191a1a;
+  --header-hover: #2a2b2b;
+  --header-active: #191a1a;
+  --header-login: #191a1a;
+  --header-height: 55px;
+
+  --header-topics: #f1f1f1;
+  --header-topics-hover: #ddd;
+  --header-topics-completed: #a3a3a3;
 
   --shading: #e4e4e4;
+  --progress-bar: #191a1a;
 
-  --button-primary-color: #44c767;
-  --button-secondary-color: #5cbf2a;
+  --button-primary-color: #191a1a;
+  --button-secondary-color: #2a2b2b;
 }
 
 body {
   margin: 0;
   padding: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: black;
 }
 
@@ -23,8 +28,8 @@ body {
   position: sticky;
   top: 0;
   width: 100%;
-
   overflow: visible;
+  z-index: 1;
 }
 
 /* Set up grid layer for header for links */
@@ -43,10 +48,10 @@ body {
 /* Configuring layout for links in header */
 .header-item {
   background-color: var(--header-default);
-  color: #000000;
+  color: white;
   text-decoration: none;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 20px;
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 15px;
 }
 
 /* Hovering link */
@@ -54,19 +59,53 @@ body {
   background-color: var(--header-hover);
 }
 
-/* Currently active link */
-.header-item.active {
-  background-color: var(--header-active);
-  font-weight: bold;
+.header-logo {
+  margin: auto;
+  width: 50%;
+  float: left;
+}
+
+/* Header dropdown selection */
+.header-dropdown {
+  display: inline-block;
+  width: auto;
+}
+
+.header-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--header-topics);
+  text-align: center;
+  min-width: 15%;
+}
+
+.header-dropdown-content a {
+  padding: 4px;
+  display: block;
+  color: #191a1a;
+  font-size: 15px;
+}
+
+.header-dropdown-content a:hover {
+  background-color: var(--header-topics-hover);
+}
+
+.header-dropdown:hover .header-dropdown-content {
+  display: block;
+}
+
+.header-dropdown:hover .header-dropbtn {
+  background-color: var(--header-hover);
 }
 
 /* Topics finished */
-.header-item.finished {
-  text-decoration: underline;
+.header-dropdown-content a.finished {
+  background-color: var(--header-topics-completed);
 }
 
-.header-item > li {
+.header-item > li, a {
   text-align: center;
+  color: white;
   vertical-align: middle;
   line-height: var(--header-height);
 }
@@ -80,14 +119,6 @@ body {
 
 .header-item img + span {
   margin: 0;
-}
-
-/* Special box for login/logout */
-#login {
-  text-align: center;
-  font-size: 14px;
-  grid-column: 7 / 8;
-  line-height: var(--header-height);
 }
 
 /* In a logged out state there are two links */
@@ -126,7 +157,7 @@ body {
 /* Progress bar */
 #progress-bar {
   position: fixed;
-  background-color: #44c767;
+  background-color: var(--progress-bar);
   height: 0%;
   width: 20px;
 }
@@ -143,8 +174,15 @@ body {
   padding: 10px 15px;
   border-radius: 8px;
   background-color: var(--shading);
-  display: none;
+  max-width: 60%;
   overflow: hidden;
+
+  display: none;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: 
+    "question     diagram"
+    "values       diagram"
+    "input        input"  ;
 }
 
 /* Button for quizzes */
@@ -163,14 +201,35 @@ body {
 }
 
 .quiz-question {
-  color: red;
+  color: black;
+  grid-area: question;
+}
+
+.quiz-diagram {
+  grid-area: diagram;
+
+  padding: 25px;
 }
 
 .quiz-values {
   font-family: Georgia, 'Times New Roman', Times, serif;
+  grid-area: values;
 }
 
-.practice-quiz-container form{
+.practice-form {
+  grid-area: input;
+}
+
+.units {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding-right: 15px;
+}
+
+.practice-quiz-container form {
+  display: none;
+}
+
+.practice-feedback {
   display: none;
 }
 
