@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
+  <div>
     <h1>Register</h1>
     <div class = "content-section">
         <form method = "POST" action="">
@@ -68,4 +69,5 @@
             Already have an account? <a class = "ml-2" href="{{ url_for('login')}}">Sign In</a>
         </small>
     </div>
+  </div>
 {% endblock %}
