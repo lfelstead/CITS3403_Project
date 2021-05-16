@@ -287,6 +287,11 @@ body {
   padding: 10px;
 }
 
+.quiz-question{
+  padding: 5% 20%;
+}
+
+
 /* Responsive for smaller screen sizes */
 @media only screen and (max-width: 600px) {
   .header-item {

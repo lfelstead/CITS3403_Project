@@ -1,25 +1,35 @@
 {% extends "layout.html" %}
 {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <h1 style="text-align: center; margin: 8%;">Results</h1>
 <div class="row">
-    <div class="col-sm-6" style="padding: 2% 5%;">
+    <div class="col-sm-6" style="padding: 0% 0% 0% 9%;">
         <p> {{msg}}</p>
         <p> Put more text here</p>
     </div>
     <div class="col-sm-6"><canvas id="dougnut-chart" style="width:100%;max-width:800px"></canvas></div>
-
 </div>
 
-<div style="margin: 0 5%"> Correct Answers
-    {% for question  in data %}
-    <div class="results-question-box">
-        <p>{% for q  in question[0] %}
-            {{q}}
-        {% endfor %}</p>
-        <p>{{question[1]}}</p>
+<div style="margin: 10% 5% 0 5%;"> 
+    <h3 style="text-align: center;">Question Review</h3>
+    <!--question: [0]:question text [1]:answer [2]:correct(true/false) [3]:image string [4]:hint-->
+    {% for question in data %}
+    {% if question[2] %}
+    <div class="results-question-box" style="background:#F0FFF0; border-radius:25px;">
+        <p>{{question[0]}}</p>
+        <p>Correct Answer: {{question[1]}}</p>
     </div> 
+    {% else %}
+    <div class="results-question-box" style="background:#ffcccb; padding: 20px;">
+        <p>{{question[0]}}</p>
+        <img src={{question[3][0]}} height="200" style="margin-bottom:40px;">
+        <p>Correct Answer: {{question[1]}}</p>
+        <p style="background:lightcoral; padding: 5px;">{{question[4]}}</p>
+    </div> 
+    {% endif %}
     {% endfor %}  
 </div>
 

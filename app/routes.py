@@ -1,7 +1,7 @@
 from sqlalchemy.sql.expression import desc
 from app import app, db, bcrypt
 from flask import Flask, render_template, flash, redirect, url_for, request
-from app.forms import EditProfileForm, LoginForm, RegistrationForm, QuizForm, Get_Questions, Get_Results, Make_Questions, Get_Answers
+from app.forms import EditProfileForm, LoginForm, RegistrationForm, QuizForm, Make_Questions, Get_Questions, Get_Results, Get_Answers
 from app.models import User, Scores
 from flask_login import login_user, current_user, logout_user, login_required
 from datetime import datetime
@@ -37,19 +37,12 @@ def four():
 @app.route("/quiz", methods = ['GET','POST'])
 def quiz():
     if current_user.is_authenticated:
-        data = Get_Questions()
+        data, images = Get_Questions()
 
         form = QuizForm()
         if form.validate_on_submit():
             # add scores to database
-            data = Get_Results()
-         
-            # remove pre-existing attempts
-            # scores are stored in the database
-
-            # Scores.query.filter(Scores.userid == current_user.id).delete()
-
-            #Gets the last attempt by the current user, then updates it.
+            data, _ = Get_Results()
 
             try:
                 attempt_count = Scores.query.filter(Scores.userid == current_user.id).order_by(desc('id')).first().attempt + 1
@@ -64,25 +57,27 @@ def quiz():
             db.session.commit()
   
             return redirect(url_for('results'))
-        return render_template("quiz.html", data=data, form=form)
+        return render_template("quiz.html", data=data, images=images, form=form)
     flash('Please login to begin the quiz', 'info')
     return redirect(url_for('login'))
 
 @app.route("/results", methods = ['GET','POST'])
 def results():
-    results = Get_Results()
+    results, hints = Get_Results()
     correct = sum(results)
-    if correct < 2:
-        msg = "Your score is {0}/3 but that ok. Review the different topics and reattempt the quiz.".format(correct)
-    elif correct == 2:
-        msg = "Your score is {0}/3. Well done! Review the different topics and reattempt the quiz.".format(correct)
-    elif correct == 3:
-        msg = "Your score is {0}/3. Wow a perfect score! Still, it wouldn't hurt to review the different topics and reattempt the quiz.".format(correct)
-    questions = list(Get_Questions())
+    if correct < 5:
+        msg = "Your score is {0}/7 but that's ok. Review the different topics and reattempt the quiz.".format(correct)
+    elif correct == 5:
+        msg = "Your score is {0}/7. Well done! Review the different topics and reattempt the quiz.".format(correct)
+    elif correct == 7:
+        msg = "Your score is {0}/7. Wow a perfect score! Still, it wouldn't hurt to review the different topics and reattempt the quiz.".format(correct)
+    questions, images = Get_Questions()
     answers = list(Get_Answers())
+    data = list(zip(list(questions), answers, results, images, hints))
+    print(answers)
 
     Make_Questions()
-    return render_template("results.html", data=zip(questions, answers), msg=msg, correct = correct, incorrect=len(results)-sum(results))
+    return render_template("results.html", data=data, msg=msg, correct=correct, incorrect=len(results)-sum(results))
 
 @app.route("/register", methods = ['GET','POST'])
 def register():
@@ -118,6 +113,10 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/references")
+def references():
+    return render_template('references.html')
 
 @app.route("/account/<username>")
 @login_required
