@@ -18,6 +18,9 @@ def one():
     return render_template("topics/intro.html")
 
 # TEMPORARY:
+@app.route("/reference")
+def reference():
+    return render_template("topics/references.html")
 
 @app.route("/two")
 def two():

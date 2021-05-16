@@ -249,8 +249,8 @@ body {
   grid-template-columns: 2fr 5fr 2fr;
 }
 
-.footer-content {
-  margin: 5px 0px px 0px;
+.names {
+  margin: 8px 0px 5px 0px;
   color: var(--footer-content);
   text-align: center;
 }
@@ -266,6 +266,16 @@ body {
 }
 .reset-button a:hover {
   text-decoration: none;
+  color: var(--footer-hover);
+}
+
+.reference-link a:link,
+.reference-link a:visited {
+  text-decoration: none;
+  color: var(--footer-content);
+}
+
+.reference-link a:hover {
   color: var(--footer-hover);
 }
 
