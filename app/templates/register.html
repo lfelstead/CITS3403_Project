@@ -1,61 +1,61 @@
 {% extends "layout.html" %}
 {% block content %}
-  <div>
+  <div class="login-field">
     <h1>Register</h1>
     <div class = "content-section">
         <form method = "POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class = "form-group">
                 <div class = "form-group border-bottom mb-4">
-                    {{ form.username.label(class="form-control-label") }}
+                    <!--{{ form.username.label(class="form-control-label") }}-->
                     {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-lg is-invalid") }}
+                        {{ form.username(class="form-control form-control-lg is-invalid login-input", placeholder="Username") }}
                         <div class = "invalid-feedback">
                             {% for error in form.username.errors %}
                                 <span>{{ error }}</span>
                             {%endfor%}
                         </div>
                     {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
+                        {{ form.username(class="form-control form-control-lg login-input", placeholder="Username") }}
                     {%endif%}
                 </div>
                 <div class = "form-group">
-                    {{ form.email.label(class="form-control-label") }}
+                    <!--{{ form.email.label(class="form-control-label") }}-->
                     {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        {{ form.email(class="form-control form-control-lg is-invalid login-input", placeholder="Email Address") }}
                         <div class = "invalid-feedback">
                             {% for error in form.email.errors %}
                                 <span>{{ error }}</span>
                             {%endfor%}
                         </div>
                     {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
+                        {{ form.email(class="form-control form-control-lg login-input", placeholder="Email Address") }}
                     {%endif%}
                 </div>
                 <div class = "form-group">
-                    {{ form.password.label(class="form-control-label") }}
+                    <!--{{ form.password.label(class="form-control-label") }}-->
                     {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-lg is-invalid") }}
+                        {{ form.password(class="form-control form-control-lg is-invalid login-input", placeholder="Password") }}
                         <div class = "invalid-feedback">
                             {% for error in form.password.errors %}
                                 <span>{{ error }}</span>
                             {%endfor%}
                         </div>
                     {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
+                        {{ form.password(class="form-control form-control-lg login-input", placeholder="Password") }}
                     {%endif%}
                 </div>
                 <div class = "form-group">
-                    {{ form.confirm.label(class="form-control-label") }}
+                    <!--{{ form.confirm.label(class="form-control-label") }}-->
                     {% if form.confirm.errors %}
-                        {{ form.confirm(class="form-control form-control-lg is-invalid") }}
+                        {{ form.confirm(class="form-control form-control-lg is-invalid login-input", placeholder="Confirm Password") }}
                         <div class = "invalid-feedback">
                             {% for error in form.confirm.errors %}
                                 <span>{{ error }}</span>
                             {%endfor%}
                         </div>
                     {% else %}
-                        {{ form.confirm(class="form-control form-control-lg") }}
+                        {{ form.confirm(class="form-control form-control-lg login-input", placeholder="Confirm Password") }}
                     {%endif%}
                 </div>
             </fieldset>
