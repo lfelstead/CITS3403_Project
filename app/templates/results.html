@@ -15,9 +15,7 @@
 <div style="margin: 0 5%"> Correct Answers
     {% for question  in data %}
     <div class="results-question-box">
-        <p>{% for q  in question[0] %}
-            {{q}}
-        {% endfor %}</p>
+        <p>{{question[0]}}</p>
         <p>{{question[1]}}</p>
     </div> 
     {% endfor %}  
