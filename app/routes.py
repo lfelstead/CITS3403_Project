@@ -17,8 +17,6 @@ def home():
 def one():
     return render_template("topics/intro.html")
 
-# TEMPORARY:
-
 @app.route("/two")
 def two():
     return render_template("topics/series.html")
@@ -63,7 +61,7 @@ def results():
     results, hints = Get_Results()
     correct = sum(results)
     if correct < 5:
-        msg = "Your score is {0}/7 but that ok. Review the different topics and reattempt the quiz.".format(correct)
+        msg = "Your score is {0}/7 but that's ok. Review the different topics and reattempt the quiz.".format(correct)
     elif correct == 5:
         msg = "Your score is {0}/7. Well done! Review the different topics and reattempt the quiz.".format(correct)
     elif correct == 7:
@@ -110,6 +108,10 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/references")
+def references():
+    return render_template('references.html')
 
 @app.route("/account/<username>")
 @login_required
