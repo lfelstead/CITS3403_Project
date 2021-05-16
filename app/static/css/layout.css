@@ -182,7 +182,8 @@ body {
   grid-template-areas: 
     "question     diagram"
     "values       diagram"
-    "input        input"  ;
+    "input        input"  
+    "feedback     feedback";
 }
 
 /* Button for quizzes */
@@ -229,8 +230,10 @@ body {
   display: none;
 }
 
-.practice-feedback {
+#practice-feedback {
   display: none;
+  grid-area: feedback;
+  margin-top: 15px;
 }
 
 footer{
