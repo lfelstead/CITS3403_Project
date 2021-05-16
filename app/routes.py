@@ -39,14 +39,7 @@ def quiz():
         form = QuizForm()
         if form.validate_on_submit():
             # add scores to database
-            data = Get_Results()
-         
-            # remove pre-existing attempts
-            # scores are stored in the database
-
-            # Scores.query.filter(Scores.userid == current_user.id).delete()
-
-            #Gets the last attempt by the current user, then updates it.
+            data, _ = Get_Results()
 
             try:
                 attempt_count = Scores.query.filter(Scores.userid == current_user.id).order_by(desc('id')).first().attempt + 1
@@ -67,7 +60,7 @@ def quiz():
 
 @app.route("/results", methods = ['GET','POST'])
 def results():
-    results = Get_Results()
+    results, hints = Get_Results()
     correct = sum(results)
     if correct < 5:
         msg = "Your score is {0}/7 but that ok. Review the different topics and reattempt the quiz.".format(correct)
@@ -75,13 +68,13 @@ def results():
         msg = "Your score is {0}/7. Well done! Review the different topics and reattempt the quiz.".format(correct)
     elif correct == 7:
         msg = "Your score is {0}/7. Wow a perfect score! Still, it wouldn't hurt to review the different topics and reattempt the quiz.".format(correct)
-    questions, _ = Get_Questions()
+    questions, images = Get_Questions()
     answers = list(Get_Answers())
-    print(list(questions))
+    data = list(zip(list(questions), answers, results, images, hints))
     print(answers)
 
     Make_Questions()
-    return render_template("results.html", data=list(zip(list(questions), answers)), msg=msg, correct = correct, incorrect=len(results)-sum(results))
+    return render_template("results.html", data=data, msg=msg, correct=correct, incorrect=len(results)-sum(results))
 
 @app.route("/register", methods = ['GET','POST'])
 def register():
