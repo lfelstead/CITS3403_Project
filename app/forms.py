@@ -3,7 +3,7 @@ from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from flask import flash
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, FloatField, TextAreaField, RadioField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
 from app.models import User
 from sqlalchemy import func
 from app.questions import get_Questions
@@ -95,17 +95,15 @@ def Get_Results():
 Make_Questions()
 
 class QuizForm(FlaskForm):
-    answer1 = RadioField('answer1', choices=[('A','A'),('B','B'), ('C','C'),('D','D')])
-    answer2 = RadioField('answer2', choices=[('Yes','Yes'),('No','No')])
-    answer3 = RadioField('answer3', choices=[('Yes','Yes'),('No','No')])
-    answer4 = FloatField('answer4')
-    answer5 = FloatField('answer5')
-    answer6 = FloatField('answer6')
-    answer7 = FloatField('answer7')
+    answer1 = RadioField('answer1', choices=[('A','A'),('B','B'), ('C','C'),('D','D')], validators=[Optional()])
+    answer2 = RadioField('answer2', choices=[('Yes','Yes'),('No','No')], validators=[Optional()])
+    answer3 = RadioField('answer3', choices=[('Yes','Yes'),('No','No')], validators=[Optional()])
+    answer4 = FloatField('answer4', validators=[Optional()])
+    answer5 = FloatField('answer5', validators=[Optional()])
+    answer6 = FloatField('answer6', validators=[Optional()])
+    answer7 = FloatField('answer7', validators=[Optional()])
 
     submit = SubmitField('Check')
-
-    print(ANSWERS_DATA)
 
     def validate_answer1(self, answer1):
         print("1. {0}, {1}".format(answer1.data, ANSWERS_DATA[0]))
