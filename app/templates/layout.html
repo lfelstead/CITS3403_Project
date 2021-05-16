@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{url_for('static', filename='js/page-script.js')}}"></script>
 
@@ -10,64 +13,99 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/layout.css')}}">
     <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}">
     <title>CITS3403 Project</title>
-</head>
-<body>
-  <header id="main-header">
-    <ul> 
-      <a class="header-logo" href="{{url_for('home')}}">
-        <li><img src="{{url_for('static', filename='logo.png')}}" alt="" style="height: 15px;"></li>
-      </a>
-      <a></a>
-      <div class="header-dropdown header-item"> <li>Topics</li>
-        <div class="header-dropdown-content">
-          <a href="{{url_for('one')}}">TOPIC ONE </a>
-          <a href="{{url_for('two')}}">TOPIC TWO</a>
-          <a href="{{url_for('three')}}">TOPIC THREE</a>
-          <a href="{{url_for('four')}}">TOPIC FOUR</a>
+  </head>
+  <body>
+    <header id="main-header">
+      <ul>
+        <a class="header-logo" href="{{url_for('home')}}">
+          <li>
+            <img
+              src="{{url_for('static', filename='logo.png')}}"
+              alt=""
+              style="height: 15px"
+            />
+          </li>
+        </a>
+        <a></a>
+        <div class="header-dropdown header-item">
+          <li>Topics</li>
+          <div class="header-dropdown-content">
+            <a href="{{url_for('one')}}">TOPIC ONE </a>
+            <a href="{{url_for('two')}}">TOPIC TWO</a>
+            <a href="{{url_for('three')}}">TOPIC THREE</a>
+            <a href="{{url_for('four')}}">TOPIC FOUR</a>
+          </div>
         </div>
-     </div>
-     
-      <a class ="header-item" href="{{url_for('quiz')}}">
-        <li>Quiz</li>
-      </a>
-      <a class ="header-item" href="{{url_for('scoreboard')}}">
-        <li>Scoreboard</li>
-      </a>
-      {% if current_user.is_authenticated %}
-      <a class ="header-item" href="{{url_for('account', username = current_user.username)}}" style="padding-right: 25px; grid-column: 6 / 8;">
-          <li><img src="{{url_for('static', filename='account.png')}}" style="height:25px; margin-right: 5%;" alt=""><span>{{current_user.username}}</span></li>
-      </a>
-      {% else %}
-      <a></a>
-      <a class ="header-item" href="{{url_for('login')}}" style="padding-right: 25px;">
-        <li href="{{url_for('login')}}">Login</li>
-      </a>
-      {% endif %}
-    </ul>
-  </header>
-  {% for category, message in get_flashed_messages(with_categories=True) %}
+
+        <a class="header-item" href="{{url_for('quiz')}}">
+          <li>Quiz</li>
+        </a>
+        <a class="header-item" href="{{url_for('scoreboard')}}">
+          <li>Scoreboard</li>
+        </a>
+        {% if current_user.is_authenticated %}
+        <a
+          class="header-item"
+          href="{{url_for('account', username = current_user.username)}}"
+          style="padding-right: 25px; grid-column: 6 / 8"
+        >
+          <li>
+            <img
+              src="{{url_for('static', filename='account.png')}}"
+              style="height: 25px; margin-right: 5%"
+              alt=""
+            /><span>{{current_user.username}}</span>
+          </li>
+        </a>
+        {% else %}
+        <a></a>
+        <a
+          class="header-item"
+          href="{{url_for('login')}}"
+          style="padding-right: 25px"
+        >
+          <li href="{{url_for('login')}}">Login</li>
+        </a>
+        {% endif %}
+      </ul>
+    </header>
+    {% for category, message in get_flashed_messages(with_categories=True) %}
     <div class="alert alert-{{category}}" role="alert">{{ message }}</div>
-  {% endfor %}
-  <div id="body-wrapper">
-    <main id="content">
-      {% block content %}{% endblock %}
-      <p id="debug"></p>
-      <div class="practice-quiz-container">
-        <button class="quiz-button" id="show-quiz"> Test your knowledge </button>
-        <form class="practice-form" action="">
-          <input type="text" class="quiz-input" id="practice-answer"> 
-          <span class=units></span>
-          <button type="submit" class="quiz-button"> Check answer </button>
-        </form>
-        <div class="practice-feedback"></div>
+    {% endfor %}
+    <div id="body-wrapper">
+      <main id="content">
+        {% block content %}{% endblock %}
+        <p id="debug"></p>
+        <div class="practice-quiz-container">
+          <button class="quiz-button" id="show-quiz">
+            Test your knowledge
+          </button>
+          <form class="practice-form" action="">
+            <input type="text" class="quiz-input" id="practice-answer" />
+            <span class="units"></span>
+            <button type="submit" class="quiz-button">Check answer</button>
+          </form>
+          <div id="practice-feedback"></div>
+        </div>
+      </main>
+      <aside id="progress">
+        <div id="progress-bar"></div>
+      </aside>
+    </div>
+    <footer id="footer">
+      <!--<div class="reset">reset your progress</div>-->
+      <div class="reset-button">
+        <a href="javascript:resetProgress()">Reset your progress</a>
       </div>
-    </main>
-    <aside id="progress">
-      <div id="progress-bar"></div>
-    </aside>
-  </div>
-  <footer> 
-    <a href="javascript:resetProgress()">Reset your progress</a>
-  </footer>
-</body>
+      <div class="reference-link">
+        <a href="{{url_for('reference')}}">REFERENCES</a>
+      </div>
+      <div class="names">
+        Lily Felstead <br />
+        Jiemin Ai <br />
+        Liam Hovell <br />
+        Max Stoner <br />
+      </div>
+    </footer>
+  </body>
 </html>
