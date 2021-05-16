@@ -101,23 +101,53 @@ class QuizForm(FlaskForm):
 
     submit = SubmitField('Check')
 
+    print(ANSWERS_DATA)
+
     def validate_answer1(self, answer1):
+        print("1. {0}, {1}".format(answer1.data, ANSWERS_DATA[0]))
         if answer1.data == ANSWERS_DATA[0]:
             CORRECT_ANSWERS[0] = True
         else: 
             CORRECT_ANSWERS[0] = False
 
     def validate_answer2(self, answer2):
+        print("2. {0}, {1}".format(answer2.data, ANSWERS_DATA[1]))
         if answer2.data == ANSWERS_DATA[1]:
             CORRECT_ANSWERS[1] = True
         else: 
             CORRECT_ANSWERS[1] = False
     
     def validate_answer3(self, answer3):
+        print("3. {0}, {1}".format(answer3.data, ANSWERS_DATA[2]))
         if answer3.data == ANSWERS_DATA[2]:
             CORRECT_ANSWERS[2] = True
         else: 
             CORRECT_ANSWERS[2] = False
     
     def validate_answer4(self, answer4):
-        print(answer4.data)
+        print("4. {0}, {1}".format(answer4.data, ANSWERS_DATA[3]))
+        if answer4.data == ANSWERS_DATA[3]:
+            CORRECT_ANSWERS[3] = True
+        else: 
+            CORRECT_ANSWERS[3] = False
+    
+    def validate_answer5(self, answer5):
+        print("5. {0}, {1}".format(answer5.data, ANSWERS_DATA[4]))
+        if answer5.data == ANSWERS_DATA[4]:
+            CORRECT_ANSWERS[4] = True
+        else: 
+            CORRECT_ANSWERS[4] = False
+
+    def validate_answer6(self, answer6):
+        print("5. {0}, {1}".format(answer6.data, ANSWERS_DATA[5]))
+        if answer6.data == ANSWERS_DATA[5]:
+            CORRECT_ANSWERS[5] = True
+        else: 
+            CORRECT_ANSWERS[5] = False
+
+    def validate_answer7(self, answer7):
+        print("4. {0}, {1}".format(answer7.data, ANSWERS_DATA[6]))
+        if answer7.data == ANSWERS_DATA[6]:
+            CORRECT_ANSWERS[6] = True
+        else: 
+            CORRECT_ANSWERS[6] = False
