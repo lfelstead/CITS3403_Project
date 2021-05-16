@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
 from flask import flash
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, TextAreaField, RadioField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from app.models import User
 from sqlalchemy import func
@@ -77,7 +77,6 @@ def Make_Questions():
         QUESTION_DATA.append(quest[index])
         IMAGES_DATA.append(img[index])
         ANSWERS_DATA.append(ans[index])
-    print(QUESTION_DATA)
 
 # used by routes.py for quiz and results page
 def Get_Questions():
@@ -92,9 +91,13 @@ def Get_Results():
 Make_Questions()
 
 class QuizForm(FlaskForm):
-    answer1 = IntegerField('answer1')
-    answer2 = IntegerField('answer2')
-    answer3 = IntegerField('answer3')
+    answer1 = RadioField('answer1', choices=[('A','A'),('B','B'), ('C','C'),('D','D')])
+    answer2 = RadioField('answer2', choices=[('Yes','Yes'),('No','No')])
+    answer3 = RadioField('answer3', choices=[('Yes','Yes'),('No','No')])
+    answer4 = IntegerField('answer4')
+    answer5 = IntegerField('answer5')
+    answer6 = IntegerField('answer6')
+    answer7 = IntegerField('answer7')
 
     submit = SubmitField('Check')
 
@@ -115,3 +118,6 @@ class QuizForm(FlaskForm):
             CORRECT_ANSWERS[2] = True
         else: 
             CORRECT_ANSWERS[2] = False
+    
+    def validate_answer4(self, answer4):
+        print(answer4.data)

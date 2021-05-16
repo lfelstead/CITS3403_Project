@@ -3,11 +3,11 @@ import random
 questions = {
     0:"Which of these images is NOT a resistor?",
     1:"Does this circuit have any parts that are in series?",
-    2:"Does this circuit have any parts that are in parallel?",
-    3: "Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, and R3 = _ Ω.",
-    4: "Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, and R3 = _ Ω. Round to two decimal places.",
-    5: "Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, and R4 = _ Ω. Round to two decimal places.",
-    6: "Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, R4 = _ Ω. and R5 = _ Ω. Round to two decimal places."
+    2:"Does the same circuit from above have any parts that are in parallel?",
+    3:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, and R3 = _ Ω.",
+    4:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, and R3 = _ Ω. Round to two decimal places.",
+    5:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, and R4 = _ Ω. Round to two decimal places.",
+    6:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, R4 = _ Ω. and R5 = _ Ω. Round to two decimal places."
 }
 
 images = {

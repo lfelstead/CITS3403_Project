@@ -6,30 +6,99 @@
             {{ form.hidden_tag() }}
             <fieldset class = "form-group">
                 <!-- Question 1 -->
+                <div class="quiz-question">
                 <p>
                     {{data[0]}}
                 </p>
+                <img src="static/img/Quiz0.png" height="150" style="margin-bottom:40px;">
                 <div class = "form-group">
-                    {{ form.answer1(class="form-control form-control-lg") }}
+                    {% for subfield in form.answer1 %}
+                    <tr>
+                        <td>{{ subfield}}</td>
+                        <td>{{ subfield.label }}</td>
+                        <span style="padding-left: 20px;"></span>
+                    </tr>
+                    {% endfor %}
+                </div>
                 </div>
 
                 <!-- Question 2 -->
+                <div class="quiz-question">
                 <p>
                     {{data[1]}}
                 </p>
+                <img src="static/img/Quiz1.png" height="250" style="margin-bottom:40px;">
                 <div class = "form-group">
-
-                        {{ form.answer2(class="form-control form-control-lg") }}
+                    {% for subfield in form.answer2 %}
+                    <tr>
+                        <td>{{ subfield}}</td>
+                        <td>{{ subfield.label }}</td>
+                        <span style="padding-left: 20px;"></span>
+                    </tr>
+                    {% endfor %}
+                </div>
                 </div>
 
                 <!-- Question 3 -->
+                <div class="quiz-question">
                 <p>
                     {{data[2]}}
                 </p>
                 <div class = "form-group">
-
-                        {{ form.answer3(class="form-control form-control-lg") }}
+                    {% for subfield in form.answer3 %}
+                    <tr>
+                        <td>{{ subfield}}</td>
+                        <td>{{ subfield.label }}</td>
+                        <span style="padding-left: 20px;"></span>
+                    </tr>
+                    {% endfor %}
                 </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="quiz-question">
+                <p>
+                    {{data[3]}}
+                </p>
+                <img src="static/img/Quiz2.png" height="200" style="margin-bottom:40px;">
+                <div class = "form-group">
+                    {{ form.answer4(class="form-control form-control-lg") }}
+                </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="quiz-question">
+                <p>
+                    {{data[4]}}
+                </p>
+                <img src="static/img/Quiz3.png" height="200" style="margin-bottom:40px;">
+                <div class = "form-group">
+                    {{ form.answer5(class="form-control form-control-lg") }}
+                </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="quiz-question">
+                <p>
+                    {{data[5]}}
+                </p>
+                <img src="static/img/Quiz4.png" height="200" style="margin-bottom:40px;">
+                <div class = "form-group">
+                    {{ form.answer6(class="form-control form-control-lg") }}
+                </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="quiz-question">
+                    <p>
+                        {{data[6]}}
+                    </p>
+                    <img src="static/img/Quiz5.png" height="250" style="margin-bottom:40px;">
+                    <div class = "form-group">
+                        {{ form.answer7(class="form-control form-control-lg") }}
+                    </div>
+                </div>
+
             </fieldset>
             <div class = "form-group">
                 {{ form.submit(class = "btn btn-outline-info")}}
