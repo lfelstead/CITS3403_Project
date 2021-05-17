@@ -5,7 +5,7 @@
       "diagram" : "/static/img/Ohms Diagram.png",
       "default-values" : ["V1: 1000V ", " R1: 200&#x3A9"],
       "units" : "A",
-      "answer" : 500,
+      "answer" : 5,
       "feedback" : ["<p>Remember, Ohm's Law describes the relation between voltage, current and resistance as V = IR.</p>"]
     },
     {

@@ -179,7 +179,7 @@ body {
   grid-template-areas:
     "question     diagram"
     "values       diagram"
-    "input        input"  
+    "input        input"
     "feedback     feedback";
 }
 
@@ -222,7 +222,7 @@ body {
 }
 
 .units {
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   margin-right: 15px;
 }
 
@@ -280,8 +280,8 @@ body {
   padding: 10px;
 }
 
-.quiz-question{
-  padding: 5% 20%;
+.quiz-question {
+  padding: 5% 5%;
 }
 
 .login-field {
@@ -299,7 +299,7 @@ body {
 }
 
 .login-field h1 {
-  font-family: 'Trebuchet MS', sans-serif;
+  font-family: "Trebuchet MS", sans-serif;
   font-size: 36px;
   margin-bottom: 20px;
 
@@ -321,9 +321,10 @@ body {
   border-radius: 8px;
 }
 
-.login-button:hover, .login-button:active, .login-button:focus {
+.login-button:hover,
+.login-button:active,
+.login-button:focus {
   border-color: var(--button-primary-color);
-  
 }
 
 /* Responsive for smaller screen sizes */
@@ -341,15 +342,18 @@ body {
   }
 
   .login-field h1 {
-    font-family: 'Trebuchet MS', sans-serif;
+    font-family: "Trebuchet MS", sans-serif;
     font-size: 12px;
     margin-bottom: 20px;
-  
+
     border-left: 5px solid var(--button-primary-color);
     border-right: 5px solid var(--button-primary-color);
   }
 
-  .login-input, .login-button, small, label {
+  .login-input,
+  .login-button,
+  small,
+  label {
     font-size: 8px;
   }
 }
