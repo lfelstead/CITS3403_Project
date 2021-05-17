@@ -126,8 +126,13 @@ def account(username):
     date = user.last_seen.strftime("%A, %B %d %Y")  
     is_current = user == current_user
 
+    curr_score = 0
+    for s in score:
+        if s.correct:
+            curr_score += 1
+
     return render_template('account.html', title= 'Account', 
-    user_score = score, user = user, is_current = is_current, date = date)
+    user_score = curr_score, user = user, is_current = is_current, date = date)
 
 @app.route("/account/edit", methods = ['Get', 'POST'])
 @login_required
