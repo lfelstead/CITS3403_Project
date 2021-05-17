@@ -41,11 +41,10 @@
             {{ form.submit(class="login-button")}}
         </div>
     </form>
-
-    <div>
-        <small>
-            <a href="{{ url_for('register')}}" style="color: black;">Sign Up</a>
-        </small>
-    </div>
+    <div class = "border-top pt-3">
+      <small class = "text-muted">
+          Don't have an account? <a class = "ml-2" href="{{ url_for('register')}}">Sign Up</a>
+      </small>
+  </div>
   </div>
 {% endblock %}

@@ -321,9 +321,7 @@ body {
   border-radius: 8px;
 }
 
-.login-button:hover,
-.login-button:active,
-.login-button:focus {
+.login-button:hover, .login-button:active, .login-button:focus {
   border-color: var(--button-primary-color);
   
 }
@@ -340,5 +338,18 @@ body {
 
   .header-item:first-child {
     text-align: left;
+  }
+
+  .login-field h1 {
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 12px;
+    margin-bottom: 20px;
+  
+    border-left: 5px solid var(--button-primary-color);
+    border-right: 5px solid var(--button-primary-color);
+  }
+
+  .login-input, .login-button, small, label {
+    font-size: 8px;
   }
 }
