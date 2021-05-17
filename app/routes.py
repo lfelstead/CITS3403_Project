@@ -67,7 +67,7 @@ def results():
     correct = sum(results)
     if correct < 5:
         msg = "Your score is {0}/7 but that's ok. Review the different topics and reattempt the quiz.".format(correct)
-    elif correct == 5:
+    elif correct == 5 or correct == 6:
         msg = "Your score is {0}/7. Well done! Review the different topics and reattempt the quiz.".format(correct)
     elif correct == 7:
         msg = "Your score is {0}/7. Wow a perfect score! Still, it wouldn't hurt to review the different topics and reattempt the quiz.".format(correct)
