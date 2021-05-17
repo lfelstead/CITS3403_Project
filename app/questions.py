@@ -17,7 +17,7 @@ def randomiseQuestions(questions,answers):
     answers[3] = nums[0]+nums[1]+nums[2]
     # question 5
     questions, nums = fill_in_question(questions, 4)
-    answers[4] = round((nums[0]*nums[1]*nums[2])/(nums[0]*nums[1]+nums[0]*nums[2]+nums[1]+nums[2]),2)
+    answers[4] = round((nums[0]*nums[1]*nums[2])/(nums[0]*nums[1]+nums[0]*nums[2]+nums[1]*nums[2]),2)
     #question 6
     questions, nums = fill_in_question(questions, 5)
     answers[5] = round(nums[0]+((nums[1]*nums[2])/(nums[1]+nums[2]))+nums[3],2)
@@ -30,11 +30,11 @@ def get_Questions():
     questions = {
         0:"Which of these images is NOT a resistor?",
         1:"Does this circuit have any parts that are in series?",
-        2:"Does the same circuit from above have any parts that are in parallel?",
-        3:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, and R3 = _ Ω.",
-        4:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, and R3 = _ Ω. Round to two decimal places.",
-        5:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, and R4 = _ Ω. Round to two decimal places.",
-        6:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, R4 = _ Ω. and R5 = _ Ω. Round to two decimal places."
+        2:"Does the same circuit have any parts that are in parallel?",
+        3:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, and R3 = _ Ω. Answer in Ohms",
+        4:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, and R3 = _ Ω. Answer in Ohms and round to two decimal places.",
+        5:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, and R4 = _ Ω. Answer in Ohms and round to two decimal places.",
+        6:"Find the total resistance (Ω) of this circuit if R1 = _ Ω, R2 = _ Ω, R3 = _ Ω, R4 = _ Ω. and R5 = _ Ω. Answer in Ohms and round to two decimal places."
     }
 
     # used on results page to provide feedback and teaching to the user
@@ -43,9 +43,9 @@ def get_Questions():
         1:"This question was answered incorrectly. If you need some help, refer to topic two: Series.",
         2:"This question was answered incorrectly. If you need some help, refer to topic three: Parallel.",
         3:"This question was answered incorrectly. Did you use the formula Rt = R1 + R2 + R3? If you need some help, refer to topic two: Series.",
-        4:"This question was answered incorrectly. Did you use the formula Rt = (R1 * R2 * R3) / (R1 * R2 + R1 * R3 + R2 * R3)? If you need some help, refer to topic three: Parallel.",
-        5:"This question was answered incorrectly. Did you use the formula Rt = R1 + ((R2 * R3) / (R2 + R3)) + R4? If you need some help, refer to topic four: All Together.",
-        6:"This question was answered incorrectly. Did you use the formula Rt = ((R1 * R2) / (R1 + R2)) + R3 + ((R4 * R5) / (R4 + R5))? If you need some help, refer to topic four: All Together."
+        4:"This question was answered incorrectly. Did you use the formula 1/Rt = 1/R1 + 1/R2 + 1/R3 + ...? If you need some help, refer to topic three: Parallel.",
+        5:"This question was answered incorrectly. Did you substitute the resistors in parallel? If you need some help, refer to topic four: All Together.",
+        6:"This question was answered incorrectly. Did you substitute the resistors in parallel? If you need some help, refer to topic four: All Together."
     }
 
     images = {

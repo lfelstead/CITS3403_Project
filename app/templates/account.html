@@ -1,14 +1,28 @@
-{% extends "layout.html" %}
-{% block content %}
-    <h1>{{user.username}}'s Account </h1>
-    <p> Score string: {{user_score}}</p>
-    {% if user.about_me %}<p>About Me:<br />{{ user.about_me }}</p>{% endif %}
-    {% if user.last_seen %}<p>Last seen on: {{ date }}</p>{% endif %}
+{% extends "layout.html" %} {% block content %}
+<div class="main-text" style="margin: 40px 150px">
+  <h1>{{user.username}}'s Account</h1>
+  <br />
+  <p>Quiz score: {{user[0]}}</p>
+  <p>{% if user.about_me %}</p>
 
-    <p>Is current user: {{is_current}}</p>
+  <p>About Me:<br />{{ user.about_me }}</p>
+  {% endif %} {% if user.last_seen %}
+  <p>Last seen on: {{ date }}</p>
+  {% endif %}
 
-    {% if user == current_user %}
-        <p><a href="{{ url_for('edit_account') }}">Edit your profile</a></p>
-    {% endif %}
-    <a href="{{url_for('logout')}}" style="color: black;">Logout</a>
+  <p>Is current user: {{is_current}}</p>
+
+  {% if user == current_user %}
+  <p><a href="{{ url_for('edit_account') }}">Edit your profile</a></p>
+  {% endif %}
+  <a href="{{url_for('logout')}}">Logout</a>
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</div>
 {% endblock %}
