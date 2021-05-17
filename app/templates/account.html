@@ -1,16 +1,24 @@
 {% extends "layout.html" %} {% block content %}
 <div class="main-text" style="margin: 40px 150px">
-  <h1>{{user.username}}'s Account</h1>
-  <br />
-  <p>Quiz score: {{user[0]}}</p>
-  <p>{% if user.about_me %}</p>
 
-  <p>About Me:<br />{{ user.about_me }}</p>
+  {% if user == current_user %}
+  <h1>My Account</h1>
+  {% else %}
+  <h1>{{user.username}}'s Account</h1>
+  {% endif %}
+  <br />
+
+  {% if user_score is defined %}
+  <p>Quiz score: {{user_score}}</p>
+  {% else %}
+  <p>You should do the quiz!</p>
+  {% endif %}
+
+  <p>{% if user.about_me %}</p>
+  <p>About Me:<br /><div style = font-size:15px >{{ user.about_me }}</div></p>
   {% endif %} {% if user.last_seen %}
   <p>Last seen on: {{ date }}</p>
   {% endif %}
-
-  <p>Is current user: {{is_current}}</p>
 
   {% if user == current_user %}
   <p><a href="{{ url_for('edit_account') }}">Edit your profile</a></p>
